@@ -1,22 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
+import { Drawer, Divider, List, ListItem, ListItemText } from '@material-ui/core';
 import Feeds from "../components/Feeds";
 import ListPageOptions from "../components/ListPageOptions";
 import firebase from '../firebase.js';
 
 const drawerWidth = 240;
 
-let feeds = [];
-for(let i = 0; i < 10; i++){
-  feeds.push({id: i, data: {location: '1'+String(i)+' Kings Street', description: 'East side atrium, 2nd floor', name: 'Camera '+String(i)}})
-}
-
-let options = [];
-for(let i = 0; i < 10; i++){
-  options.push({title: 'option '+String(i)})
-}
+let options = [{title: 'Location'}, {title: 'Activity'}, {title: 'Importance'}];
 
 const styles = theme => ({
   drawerPaper: {
@@ -44,7 +36,6 @@ class ListPage extends Component{
   }
 
   render() {
-    console.log(this.state.feeds);
     return (
       <div style={{position: 'relative', display: 'flex', overflow: 'hidden'}}>
         <Drawer
@@ -54,6 +45,12 @@ class ListPage extends Component{
           }}
         >
           <div className={this.props.classes.toolbar}/>
+          <List>
+            <ListItem>
+              <ListItemText primary="Filters"/>
+            </ListItem>
+          </List>
+          <Divider/>
           <ListPageOptions options={options}/>
         </Drawer>
         <main style={{flexGrow: 1, padding: '5px', backgroundColor: 'whitesmoke'}}>
