@@ -12,9 +12,8 @@ import { withRouter } from 'react-router-dom';
 function FeedCard(props) {
   const { history } = props;
   return (
-    <div>
       <Card
-        style={{margin: '10px', minWidth: '100px', height: '350px', position: 'relative'}}
+        style={{margin: '10px', height: '350px', position: 'relative'}}
       >
         <div style={{textAlign:'center', fontFamily:'waukegan'}}>
           <CardHeader
@@ -38,7 +37,6 @@ function FeedCard(props) {
           </CardActions>
         </div>
       </Card>
-    </div>
   );
 }
 

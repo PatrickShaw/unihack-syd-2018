@@ -1,9 +1,15 @@
 import React, {Component} from 'react';
-import Grid from '@material-ui/core/Grid';
-import FeedCard from './FeedCard';
 import { observer } from "mobx-react";
+import withStyles from '@material-ui/core/styles/withStyles';
 
-class FeedsList extends Component {
+import FeedCard from './FeedCard';
+
+export default withStyles({
+  grid: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(240px,1fr))'
+  }
+})(observer(class FeedsList extends Component {
   constructor(props){
     super(props);
     this.state = {feeds: props.feeds}
@@ -16,22 +22,16 @@ class FeedsList extends Component {
   generateList(){
     return (
       this.state.feeds.map((item, index) => (
-        <Grid item xs={3} spacing={24}>
-          <FeedCard key={index} feedItem={item}/>
-        </Grid>
+        <FeedCard key={index} feedItem={item}/>
       ))
     )
   }
 
   render() {
     return (
-      <div>
-        <Grid container spacing={8}>
-          {this.generateList()}
-        </Grid>
+      <div className={this.props.classes.grid}>
+        {this.generateList()}
       </div>
     )
   }
-}
-
-export default observer(FeedsList)
+}))
