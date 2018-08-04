@@ -35,11 +35,13 @@ export const App = withStyles({
             <Route path='/map' component={MapPage}/>
             <Route path='/list' component={ListPage}/>
             <Route path='/cctv' render={() => <VideoPage
-                videoTitle="Swag"
-                video={{
-                  url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-                }}
-              />}/>
+              videoTitle="Swag"
+              video={{
+                title: 'Camera 1',
+                subheader: '23 Kings Street',
+                src: 'rick.mp4',
+              }}
+            />}/>
             <Route path='/home' component={HomePage}/>
             <Route exact path='/' component={HomePage}/>
             <Route path='/' component={ErrorPage}/>

@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
 
 import { Map } from '../components/Map';
+import VideoCard from '../components/VideoCard';
 
 const LabelThing = ({label, value}) => (
   value ?   <p><strong>{label}</strong>{value ? ` ${value}` : ''}</p> : null
-)
+);
 
 export const VideoPage = withStyles({
   video: {
@@ -15,13 +16,12 @@ export const VideoPage = withStyles({
   render() {
     return (
       <div>
-        <h1>{this.props.video.title}</h1>
-        <video className={this.props.classes.video} control>
-          <source src={this.props.video.src} type="video/mp4"/>
-        </video>
+        <VideoCard
+          video={this.props.video}
+        />
         <LabelThing name={'Status'} value={this.props.status}/>
         
       </div>
     );
   }
-})
+});
