@@ -5,7 +5,7 @@ export class Map extends Component {
     super(props);
     this.tileLayer = tileLayer(
       'http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; Seat.Me</a>'
+        attribution: '&copy; ArkAngel'
       }
     );
     this.roomLayer = geoJSON([], {});

@@ -10,6 +10,7 @@ export const MapPage = withStyles({
 })(class extends Component {
   render() {
     return (
+      
       <div className={this.props.classes.mapContainer}>
         <Map/>
       </div>
