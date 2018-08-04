@@ -10,7 +10,7 @@ export const Map = withStyles({
   constructor(props) {
     super(props);
     this.tileLayer = tileLayer(
-      'http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+      'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; ArkAngel',
         id: 'mapbox.streets'
       }
