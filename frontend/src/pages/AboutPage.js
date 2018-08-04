@@ -5,7 +5,8 @@ import SliderImg from '../img/commute.jpg';
 
 export const AboutPage = withStyles({
   about: {
-    padding:'50px',
+    paddingTop: '20px',
+    paddingLeft:'50px',
   },
 })(class AboutPage extends Component {
   render() {

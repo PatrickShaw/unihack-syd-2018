@@ -7,12 +7,12 @@ export const HomePage = withStyles({
   slider: {
     objectFit: 'cover',
     objectPosition: 'center',
-    maxHeight: '40vh',
+    maxHeight: '50vh',
     width: '100%'
   },
   slogan: {
     textAlign: 'center',
-    paddingTop: '40px',
+    paddingTop: '60px',
     fontFamily: 'waukegan',
     fontSize:'4rem'
   }
