@@ -44,8 +44,8 @@ class VideoCard extends React.Component {
     return (
       <Card style={{margin: '20px auto', maxWidth: '1000px'}}>
         <CardHeader
-          title={this.props.video.title}
-          subheader={this.props.video.subheader}
+          title={this.props.camera.name}
+          subheader={'Latitude: '+this.props.camera.location._lat+'; Longitude: '+this.props.camera.location._long}
         />
         <video controls width='100%'>
           <source src={this.props.video.src} type="video/mp4"/>

@@ -34,12 +34,12 @@ export const App = withStyles({
             <Route path='/about' component={AboutPage}/>
             <Route path='/map' component={MapPage}/>
             <Route path='/list' component={ListPage}/>
-            <Route path='/cctv/:id' render={(match) => <VideoPage
+            <Route path='/cctv/:id' render={({match}) => (<VideoPage
               cameraId={match.params.id}
               video={{
                 src: 'rick.mp4',
               }}
-            />}/>
+            />)}/>
             <Route path='/home' component={HomePage}/>
             <Route exact path='/' component={HomePage}/>
             <Route path='/' component={ErrorPage}/>

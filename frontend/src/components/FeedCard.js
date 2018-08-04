@@ -29,7 +29,7 @@ function FeedCard(props) {
           </Typography>
         </CardContent>
         <CardActions style={{position: 'absolute', bottom: '5px'}}>
-          <Button size="small" color="primary" onClick={()=>history.push(CCTV+'/'+props.id)}>
+          <Button size="small" color="primary" onClick={()=>history.push(CCTV+'/'+props.feedItem.id)}>
             View
           </Button>
         </CardActions>
