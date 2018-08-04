@@ -8,6 +8,10 @@ class FeedsList extends Component {
     this.state = {feeds: props.feeds}
   }
 
+  componentWillReceiveProps(nextProps){
+    this.setState({feeds: nextProps.feeds});
+  }
+
   generateList(){
     return (
       this.state.feeds.map((item, index) => (
@@ -19,7 +23,6 @@ class FeedsList extends Component {
   }
 
   render() {
-    console.log(this.state.feeds);
     return (
       <div>
         <Grid container spacing={8}>

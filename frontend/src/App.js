@@ -36,7 +36,7 @@ export const App = withStyles({
             <TransitionGroup>
               <CSSTransition key={location.key} className={this.props.classes.fade} timeout={200}>
                 <Switch>
-                  <Route path='/' component={AboutPage}/>
+                  <Route path='/about' component={AboutPage}/>
                   <Route path='/map' component={MapPage}/>
                   <Route path='/list' component={ListPage}/>
                   <Route path='/cctv' render={() => <VideoPage
