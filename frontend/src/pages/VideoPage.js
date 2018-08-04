@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
+
+import { Map } from '../components/Map';
 import VideoCard from '../components/VideoCard';
 
 const LabelThing = ({label, value}) => (
@@ -18,6 +20,7 @@ export const VideoPage = withStyles({
           video={this.props.video}
         />
         <LabelThing name={'Status'} value={this.props.status}/>
+        
       </div>
     );
   }
