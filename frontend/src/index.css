@@ -1,3 +1,31 @@
+@font-face {
+  font-family: 'waukegan';
+  font-style: normal;
+  font-weight: 400;
+  src: url('fonts/waukegan.ttf');
+}
+
+@font-face {
+  font-family: 'waukegan-bold';
+  font-style: normal;
+  font-weight: 400;
+  src: url('fonts/waukegan_bold.ttf');
+}
+
+slogan {
+  fontFamily: 'waukegan-bold';
+  fontSize:'5rem';
+}
+
+h1 {
+  fontFamily: 'waukegan-bold';
+  fontSize:'3rem';
+}
+
+p {
+  fontFamily: 'waukegan';
+}
+
 body {
   margin: 0;
   padding: 0;

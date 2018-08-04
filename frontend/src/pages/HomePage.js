@@ -1,22 +1,27 @@
 import React, { Component } from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
 
-import LuggageSlider from '../img/adult-airport-arrival.jpg';
+import SliderImg from '../img/commute.jpg';
 
 export const HomePage = withStyles({
   slider: {
-    height: '60%',
+    objectFit: 'cover',
+    objectPosition: 'center',
+    maxHeight: '40vh',
     width: '100%'
   },
   slogan: {
-    height: '100px'
+    fontFamily: 'waukegan',
+    fontSize:'3rem'
   }
 })(class HomePage extends Component {
   render() {
     return (
-      <img src={LuggageSlider} className={this.props.classes.slider}/>
-      <div className={this.props.classes.slogan}>
-        "Community Safety. Our first priority."
+      <div>
+        <img src={SliderImg} className={this.props.classes.slider}/>
+        <p className={this.props.classes.slogan}>
+          Community Safety. Our first priority.
+        </p>
       </div>
     )
   }
