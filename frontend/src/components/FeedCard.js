@@ -13,7 +13,7 @@ function FeedCard(props) {
   const { history } = props;
   return (
       <Card>
-        <div style={{textAlign:'center', fontFamily:'waukegan'}}>
+        <div style={{fontFamily:'waukegan'}}>
           <CardHeader
             title={props.feedItem.name} onClick={()=>history.push(CCTV+'/'+props.feedItem.id)}
           />
@@ -22,7 +22,7 @@ function FeedCard(props) {
           <source src={'rick.mp4'} type="video/mp4"/>
         </video>
         <CardContent>
-          <Typography component="p" style={{fontSize:'14px'}}>
+          <Typography component="p">
             {props.feedItem.description}
           </Typography>
         </CardContent>
