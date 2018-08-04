@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import withStyles from '@material-ui/core/styles/withStyles';
 
+import { AboutPage } from './pages/AboutPage';
 import { HomePage } from './pages/HomePage';
 import { MapPage } from './pages/MapPage';
 import { VideoPage } from './pages/VideoPage';
@@ -30,6 +31,7 @@ export const App = withStyles({
       <div className={this.props.classes.app}>
         <ContentContainer>
           <Switch>
+            <Route path='/about' component={AboutPage}/>
             <Route path='/map' component={MapPage}/>
             <Route path='/list' component={ListPage}/>
             <Route path='/cctv' render={() => <VideoPage
