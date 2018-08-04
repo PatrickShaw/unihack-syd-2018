@@ -10,6 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import red from '@material-ui/core/colors/red';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
+import Spinner from 'react-spinkit';
 
 const styles = theme => ({
   media: {
@@ -39,6 +40,10 @@ const styles = theme => ({
 
 class VideoCard extends React.Component {
   render() {
+    if(this.props.fetching){
+      return (<Spinner name='double-bounce' />
+      )
+    }
     const { classes } = this.props;
 
     return (

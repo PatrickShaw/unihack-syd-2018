@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import { Drawer, Divider, List, ListItem, ListItemText } from '@material-ui/core';
+import { Drawer, Divider, List, ListItem, ListItemText, Tooltip, Button } from '@material-ui/core';
 import Feeds from "../components/Feeds";
 import ListPageOptions from "../components/ListPageOptions";
 import state from '../state';
 import { observer } from "mobx-react";
-
-import ViewIcon from '../img/circular-map.png';
+import LocationOnIcon from '@material-ui/icons/LocationOn';
 
 const drawerWidth = 240;
 
@@ -20,20 +19,10 @@ const styles = theme => ({
   },
   viewButton: {
     position: 'fixed',
-    height: '70px',
     maxHeight: '100%',
     bottom: '30px',
     right: '40px',
-  },
-  buttonText: {
-    padding: '5px',
-    color: 'black',
-    align: 'center',
-    fontSize: '1.15em',
-    fontFamily: 'waukegan',
-    position: 'fixed',
-    right: '30px',
-    bottom: '105px',
+    backgroundColor: 'black'
   }
 });
 
@@ -49,7 +38,7 @@ class ListPage extends Component {
   // Switches to Map mode
   switchMap = () => {
     this.props.history.push("/map")
-  }
+  };
 
   render() {
     return (
@@ -72,9 +61,11 @@ class ListPage extends Component {
         <main style={{flexGrow: 1, padding: '5px', backgroundColor: 'whitesmoke'}}>
           <Feeds feeds={state.cameras} fetching={this.state.fetching}/>
         </main>
-        <div className={this.props.classes.buttonText}>Map Mode</div>
-        <img onClick={this.switchMap} src={ViewIcon} className={this.props.classes.viewButton}
-        title="Change Views"></img>
+        <Tooltip disableFocusListener disableTouchListener title="Map Mode">
+          <Button onClick={this.switchMap} variant='fab' className={this.props.classes.viewButton}>
+            <LocationOnIcon style={{color: 'white'}}/>
+          </Button>
+        </Tooltip>
       </div>
     );
   }

@@ -21,13 +21,12 @@ class State {
     }));
     this.cameras.length = 0;
     this.cameras.push(...cameras);
-    //cameras.forEach(action(camera => this.cameras.push(camera)));
   };
 
   onEventsUpdate = (snapshot) => {
     const events = snapshot.docs.map((docSnapshot) => Object.assign({}, docSnapshot.data(), {id: docSnapshot.id}));
     this.events.length = 0;
-    events.forEach(action(camera => this.events.push(camera)));
+    this.events.push(...events);
   };
 
   cameraEvents = computed(() => (
