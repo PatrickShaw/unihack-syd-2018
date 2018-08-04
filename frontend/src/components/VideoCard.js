@@ -15,7 +15,7 @@ import Spinner from 'react-spinkit';
 import classnames from 'classnames';
 import { observer } from "mobx-react";
 
-import { Mapz } from './Mapz';
+import { GoogleMap } from './GoogleMap';
 import VideoCardHistory from './VideoCardHistory';
 
 const styles = theme => ({
@@ -81,7 +81,6 @@ class VideoCard extends Component {
           title={this.state.camera.name}
           subheader={'Latitude: '+this.state.camera.location._lat+'; Longitude: '+this.state.camera.location._long}
         />
-        
         <CardContent>
           <Typography component="p">
             {this.state.camera.description}
@@ -90,7 +89,7 @@ class VideoCard extends Component {
         <video controls width='100%'>
           <source src={this.state.video.src} type="video/mp4"/>
         </video>
-        <Mapz cameraEvents={this.props.events.map(event => ({ ...event, camera: this.props.camera}))}/>
+        <GoogleMap cameraEvents={this.props.events.map(event => ({ ...event, camera: this.props.camera}))}/>
         <CardActions className={classes.actions} disableActionSpacing>
           <div className={this.props.classes.center}>
             <Button text-align="center" variant="contained"  color='primary' aria-label="Notify" className={classes.button}>

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
 import {observer} from 'mobx-react';
 
-import { Mapz } from '../components/Mapz';
+import { GoogleMap } from '../components/GoogleMap';
 import { Tooltip, Button } from '@material-ui/core';
 import ViewListIcon from '@material-ui/icons/ViewList';
 
@@ -37,7 +37,7 @@ export const MapPage = withStyles(theme => ({
   render() {
     return (
       <div className={this.props.classes.mapContainer}>
-        <Mapz cameraEvents={state.cameraEvents.get()}/>
+        <GoogleMap cameraEvents={state.cameraEvents.get()}/>
         <Tooltip disableFocusListener disableTouchListener title="List View">
           <Button onClick={this.switchList} color='secondary' variant='fab' className={this.props.classes.viewButton}>
             <ViewListIcon style={{color: 'white'}}/>

@@ -34,7 +34,7 @@ function iconUrl(severity) {
 }
 
 let google = undefined;
-export const Mapz = observer(withStyles({
+export const GoogleMap = observer(withStyles({
   mapContainer: { 
     width: '100%',
     height: '85vh',
@@ -42,7 +42,7 @@ export const Mapz = observer(withStyles({
     flexDirection: 'column',
     maxHeight: '100vh'
   }
-})(class Mapz extends Component {
+})(class GoogleMap extends Component {
 
   constructor(props) {
     super(props);
