@@ -21,10 +21,12 @@ const styles = theme => ({
     position: 'fixed',
     maxHeight: '100%',
     bottom: '30px',
-    right: '40px'
-  },
-  listItem: {
+    right: '40px',
     backgroundColor: theme.palette.secondary.main
+  },
+  filterTitle: {
+    fontFamily: 'waukegan-bold',
+    fontSize: '1.5em'
   }
 });
 
@@ -44,7 +46,7 @@ class ListPage extends Component {
 
   render() {
     return (
-      <div style={{position: 'relative', display: 'flex', overflow: 'hidden'}}>
+      <div style={{fontFamily: 'waukegan', position: 'relative', display: 'flex', overflow: 'hidden'}}>
         <Drawer
           variant="permanent"
           classes={{
@@ -53,13 +55,14 @@ class ListPage extends Component {
         >
           <List>
             <ListItem>
-              <ListItemText primary="Filters"/>
+              <ListItemText classes={{primary: this.props.classes.filterTitle}}
+               primary="Filters"/>
             </ListItem>
           </List>
           <Divider/>
           <ListPageOptions options={options}/>
         </Drawer>
-        <main style={{flexGrow: 1, padding: '15px', backgroundColor: 'whitesmoke'}}>
+        <main style={{fontFamily: 'waukegan', flexGrow: 1, padding: '15px', backgroundColor: 'whitesmoke'}}>
           <Feeds feeds={state.cameras} fetching={this.state.fetching}/>
         </main>
         <Tooltip disableFocusListener disableTouchListener title="Map View">

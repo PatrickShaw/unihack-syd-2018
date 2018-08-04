@@ -5,11 +5,16 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 
+
 const styles = theme => ({
   root: {
     width: '100%',
     maxWidth: 360,
   },
+  text: {
+    fontFamily: 'waukegan',
+    fontSize: '1.1em',
+  }
 });
 
 function ListPageOptions(props) {
@@ -20,7 +25,7 @@ function ListPageOptions(props) {
         {
           props.options.map((item, index) => (
             <ListItem key={index} button>
-              <ListItemText primary={item.title} />
+              <ListItemText classes={{primary: props.classes.text}} primary={item.title}/>
             </ListItem>
           ))
         }
