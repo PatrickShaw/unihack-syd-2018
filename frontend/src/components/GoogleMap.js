@@ -35,9 +35,8 @@ function iconUrl(severity) {
 
 let google = undefined;
 export const GoogleMap = observer(withStyles({
-  mapContainer: { 
+  mapContainer: {
     width: '100%',
-    height: '85vh',
     display: 'flex',
     flexDirection: 'column',
     maxHeight: '100vh'
@@ -67,7 +66,7 @@ export const GoogleMap = observer(withStyles({
               map: this.googleMap,
               title: event.camera.locationName,
               icon: iconUrl(event.severity)
-            }); 
+            });
             marker.setMap(this.googleMap);
             this.markers.set(cameraId, marker);
             console.log(`Added ${cameraId} at ${cameraLocation._lat},${cameraLocation._long} to markers`);
@@ -83,7 +82,7 @@ export const GoogleMap = observer(withStyles({
         } catch(err) {
           console.error(err);
         }
-      });  
+      });
     } else {
       console.log(`googleMap is currently ${this.googleMap}`);
     }
@@ -94,7 +93,7 @@ export const GoogleMap = observer(withStyles({
       console.log(`Google maps API state: ${mapsState.mapsIsReady}`);
       if (mapsState.mapsIsReady) {
         google = window.google;
-        
+
         console.log(google);
         let loc = undefined;
         if (this.props.navToLoc) {
@@ -126,7 +125,7 @@ export const GoogleMap = observer(withStyles({
             },
           ]
         });
-        this.filterMarkers();         
+        this.filterMarkers();
       }
     })
   }
@@ -136,6 +135,7 @@ export const GoogleMap = observer(withStyles({
     return (
       <div
         className={this.props.classes.mapContainer}
+        style={{height:this.props.height}}
         ref={(mapContainer) => { this.mapContainer = mapContainer; }}
       >
       </div>
