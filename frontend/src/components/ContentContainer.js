@@ -6,19 +6,31 @@ import withStyles from '@material-ui/core/styles/withStyles';
 // TODO: give this a better name
 export const ContentContainer = withStyles({
   container: {
-    display: 'flex'
+    display: 'flex',
+    flexDirection: 'column',
+    height: '100%'
+  },
+  dontScale: {
+    flexGrow: 0,
+    flexShrink: 0
+  },
+  content: {
+    flexGrow: 1,
+    flexShrink: 1
   }
-})(class extends Component { 
+})(class ContentContainer extends Component { 
   render() {
     return (
-      <div>
-        <Header/>
-          <div className={this.props.classes.container}>
-          {
-            this.props.children
-          }
-          </div>
-        <Footer/>
+      <div className={this.props.classes.container}>
+        <header className={this.props.classes.dontScale}>
+          <Header/>
+        </header>
+        <div className={this.props.classes.content}>
+          {this.props.children}
+        </div>
+        <footer className={this.props.classes.dontScale}>
+          <Footer/>
+        </footer>
       </div>
     );
   }

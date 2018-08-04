@@ -1,15 +1,21 @@
 import React, { Component } from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
 
-import Logo from './img/arkangel_logo.svg';
+import Logo from '../img/arkangel_logo.svg';
 export const Header = withStyles({
-
-})(class extends Component { 
+  header: {
+    height: '128px'
+  },
+  logo: {
+    height: '100%',
+    width: 'auto'
+  }
+})(class Header extends Component { 
   render() {
     return (
-      <header>
-        <img src={Logo}/>
-      </header>
+      <div className={this.props.classes.header}>
+        <img src={Logo} className={this.props.classes.logo}/>
+      </div>
     );
   }
 })

@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import { tileLayer, map, LatLng, geoJSON } from 'leaflet';
-export class Map extends Component {
+import withStyles from '@material-ui/core/styles/withStyles';
+export const Map = withStyles({
+  mapContainer: {
+    width: '100%',
+    height: '100%'
+  }
+})(class Map extends Component {
   constructor(props) {
     super(props);
     this.tileLayer = tileLayer(
@@ -25,10 +31,10 @@ export class Map extends Component {
     this.roomLayer.clearLayers();
     return (
       <div
-        className="map-container"
+        className={this.props.classes.mapContainer}
         ref={(mapContainer) => { this.mapContainer = mapContainer; }}
       >
       </div>
     );
   }
-}
+})

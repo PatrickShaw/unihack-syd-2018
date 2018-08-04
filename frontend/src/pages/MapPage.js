@@ -7,7 +7,7 @@ export const MapPage = withStyles({
   mapContainer: {
     display: 'flex'
   }
-})(class extends Component {
+})(class MapPage extends Component {
   render() {
     return (
       
