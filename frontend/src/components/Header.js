@@ -6,8 +6,8 @@ export const Header = withStyles({
   header: {
     paddingTop: '50px',
     paddingLeft: '35px',
-    paddingBottom: '10px',
-    height: '100px',
+    paddingBottom: '0px',
+    height: '80px',
   },
   logo: {
     height: '60%',
