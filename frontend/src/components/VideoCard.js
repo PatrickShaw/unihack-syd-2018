@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -10,7 +10,11 @@ import Typography from '@material-ui/core/Typography';
 import red from '@material-ui/core/colors/red';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Spinner from 'react-spinkit';
+import VideoCardHistory from './VideoCardHistory';
+import classnames from 'classnames';
+import { observer } from "mobx-react";
 
 const styles = theme => ({
   media: {
@@ -30,7 +34,7 @@ const styles = theme => ({
       marginRight: -8,
     },
   },
-  expandOpen: {
+    expandOpen: {
     transform: 'rotate(180deg)',
   },
   avatar: {
@@ -38,27 +42,40 @@ const styles = theme => ({
   },
 });
 
-class VideoCard extends React.Component {
+class VideoCard extends Component {
+  constructor(props){
+    super(props);
+    this.state = { expanded: false, video: props.video, fetching: props.fetching, camera: props.camera, events: props.events}
+  }
+
+  componentWillReceiveProps(nextProps){
+    this.setState({video: nextProps.video, fetching: nextProps.fetching, camera: nextProps.camera, events: nextProps.events});
+  }
+
+  handleExpandClick = () => {
+    this.setState(({ expanded: !this.state.expanded }));
+  };
+
   render() {
-    if(this.props.fetching){
+    if(this.state.fetching){
       return (<Spinner name='double-bounce' />
       )
     }
     const { classes } = this.props;
 
+    console.log(this.state.events);
     return (
       <Card style={{margin: '20px auto', maxWidth: '1000px'}}>
         <CardHeader
-          title={this.props.camera.name}
-          subheader={'Latitude: '+this.props.camera.location._lat+'; Longitude: '+this.props.camera.location._long}
+          title={this.state.camera.name}
+          subheader={'Latitude: '+this.state.camera.location._lat+'; Longitude: '+this.state.camera.location._long}
         />
         <video controls width='100%'>
-          <source src={this.props.video.src} type="video/mp4"/>
+          <source src={this.state.video.src} type="video/mp4"/>
         </video>
         <CardContent>
           <Typography component="p">
-            This impressive paella is a perfect party dish and a fun meal to cook together with
-            your guests. Add 1 cup of frozen peas along with the mussels, if you like.
+            {this.state.camera.description}
           </Typography>
         </CardContent>
         <CardActions className={classes.actions} disableActionSpacing>
@@ -68,7 +85,18 @@ class VideoCard extends React.Component {
           <IconButton aria-label="Share">
             <ShareIcon />
           </IconButton>
+          <IconButton
+            className={classnames(classes.expand, {
+              [classes.expandOpen]: this.state.expanded,
+            })}
+            onClick={this.handleExpandClick}
+            aria-expanded={this.state.expanded}
+            aria-label="Show more"
+          >
+            <ExpandMoreIcon />
+          </IconButton>
         </CardActions>
+        <VideoCardHistory expanded={this.state.expanded} history={this.state.events}/>
       </Card>
     );
   }
@@ -78,4 +106,4 @@ VideoCard.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(VideoCard);
+export default withStyles(styles)(observer(VideoCard));

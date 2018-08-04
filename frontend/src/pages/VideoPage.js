@@ -20,7 +20,6 @@ class VideoPage extends Component {
   getEvents = () => state.events.filter(event => event.cameraId === this.state.cameraId);
 
   render() {
-    console.log(this.getCamera());
     return (
       <div>
         <VideoCard
