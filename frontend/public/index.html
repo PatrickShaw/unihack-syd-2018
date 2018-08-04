@@ -23,8 +23,22 @@
 
       Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
       work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
+      Learn how to configure
+       a non-root public URL by running `npm run build`.
     -->
+    <script type="text/javascript">
+      let isGoogleMapReady = false;
+      function mapsIsReady() {
+        return isGoogleMapReady;
+      }
+      function setMapsIsReady() {
+        isGoogleMapReady = true;
+      }
+    </script>
+
+    <script 
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAxhlLHBbuas8eMitNV0agVB-OHTWACS8A&callback=setMapsIsReady" async defer>
+  </script>
     <title>ArkAngel</title>
   </head>
   <body>

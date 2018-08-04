@@ -15,16 +15,6 @@ export const App = withStyles({
     width: '100%',
     height: '100vh'
   },
-  fadeEnter: {
-    opacity: 0,
-    zIndex: 1
-  },
-  fadeEnter: {
-    '&fadeEnterActive': {
-      opacity: 1,
-      transition: 'opacity 250ms ease-in'
-    }
-  }
 })(class App extends Component {
   render() {
     return (
@@ -34,14 +24,16 @@ export const App = withStyles({
             <Route path='/about' component={AboutPage}/>
             <Route path='/map' component={MapPage}/>
             <Route path='/list' component={ListPage}/>
-            <Route path='/cctv' render={() => <VideoPage
-              videoTitle="Swag"
-              video={{
-                title: 'Camera 1',
-                subheader: '23 Kings Street',
-                src: 'rick.mp4',
-              }}
-            />}/>
+            <Route path='/cctv' render={() => (
+              <VideoPage
+                videoTitle="Swag"
+                video={{
+                  title: 'Camera 1',
+                  subheader: '23 Kings Street',
+                  src: 'rick.mp4',
+                }}
+              />
+            )}/>
             <Route path='/home' component={HomePage}/>
             <Route exact path='/' component={HomePage}/>
             <Route path='/' component={ErrorPage}/>

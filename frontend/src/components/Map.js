@@ -1,35 +1,41 @@
 import React, { Component } from 'react';
-import { tileLayer, map, LatLng, geoJSON } from 'leaflet';
 import withStyles from '@material-ui/core/styles/withStyles';
+import { autorun, observable } from 'mobx';
+import { observer } from 'mobx-react';
 
-export const Map = withStyles({
+import { mapsState } from '../state/googleMapsReady';
+
+const google = window.google;
+export const Map = observer(withStyles({
   mapContainer: { 
-    width: '100%'
+    width: '100%',
+    height: '85vh',
+    display: 'flex',
+    flexDirection: 'column',
+    maxHeight: '100vh'
   }
 })(class Map extends Component {
   constructor(props) {
     super(props);
-    this.tileLayer = tileLayer(
-      'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; ArkAngel',
-        id: 'mapbox.streets'
-      }
-    );
-    this.roomLayer = geoJSON([], {});
+    this.mapState = observable({
+      googleMap: null,
+    });
   }
 
   componentDidMount() {
-    this.map = map(this.mapContainer, {
-      center: new LatLng(-38, 147),
-      zoom: 18,
-      maxZoom: 20
-    });
-    this.tileLayer.addTo(this.map);
-    this.roomLayer.addTo(this.map);
+    autorun(() => {
+      console.log(`Google maps API state: ${mapsState.mapsIsReady}`);
+      if (mapsState.mapsIsReady) {
+        console.log(google);
+        this.mapState.googleMap = new google.maps.Map(this.mapContainer, {
+          center: {lat: -37.81950134905335, lng: 144.98429111204815},
+          zoom: 8
+        });         
+      }
+    })
   }
 
   render() {
-    this.roomLayer.clearLayers();
     return (
       <div
         className={this.props.classes.mapContainer}
@@ -38,4 +44,4 @@ export const Map = withStyles({
       </div>
     );
   }
-})
+}));

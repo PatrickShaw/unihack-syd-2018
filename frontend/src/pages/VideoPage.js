@@ -11,6 +11,9 @@ const LabelThing = ({label, value}) => (
 export const VideoPage = withStyles({
   video: {
     maxHeight: '400px'
+  },
+  mapContainer: {
+    maxHeight: '400px'
   }
 })(class VideoPage extends Component {
   render() {
@@ -20,7 +23,10 @@ export const VideoPage = withStyles({
           video={this.props.video}
         />
         <LabelThing name={'Status'} value={this.props.status}/>
-        
+        <h2>Map</h2>
+        <div className={this.props.mapContainer}>
+          <Map/>
+        </div>
       </div>
     );
   }
