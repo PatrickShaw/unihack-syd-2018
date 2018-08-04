@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
-import { autorun, observable } from 'mobx';
+import { autorun, observable, toJS } from 'mobx';
 import { observer } from 'mobx-react';
 
 import { mapsState } from '../state/googleMapsReady';
+function padZeroes(value, digitCount) {
+  while (value.length < digitCount) {
+    value = `0${value}`;
+  }
+  return value;
+}
 
 function severityToColor(severity) {
   const blueness = Math.max(0, Math.min(1, severity));
@@ -14,15 +20,15 @@ function severityToColor(severity) {
   const blue = Math.round(baseGreyTone + blueOffset);
   const red = Math.round(baseGreyTone - greyRange * blueness);
   const green = Math.round((baseGreyTone + blueOffset * 0.25) - greyRange * blueness);
-  const blueHex = this.padZeroes(green.toString(16), 2);
-  const redHex = this.padZeroes(red.toString(16), 2);
-  const greenHex = this.padZeroes(blue.toString(16), 2);
+  const blueHex = padZeroes(green.toString(16), 2);
+  const redHex = padZeroes(red.toString(16), 2);
+  const greenHex = padZeroes(blue.toString(16), 2);
   const colorHex = `${redHex}${greenHex}${blueHex}`;
   return colorHex;
 }
 
 let google = undefined;
-export const Map = observer(withStyles({
+export const Mapz = observer(withStyles({
   mapContainer: { 
     width: '100%',
     height: '85vh',
@@ -30,32 +36,44 @@ export const Map = observer(withStyles({
     flexDirection: 'column',
     maxHeight: '100vh'
   }
-})(class Map extends Component {
+})(class Mapz extends Component {
 
   constructor(props) {
     super(props);
-    this.mapState = observable({
-      googleMap: null,
-    });
-    this.markers = observable([]);
+    this.markers = observable(new Map());
   }
 
   filterMarkers = () => {
-    if (this.mapState.mapsIsReady) {
-      this.markers.length = 0;
+    console.log('Filtering markers');
+    if (this.googleMap) {
+      console.log(toJS(this.props.events));
       this.props.events.forEach(event => {
+        const cameraId = event.cameraId;
+        let marker = undefined;
+        const cameraLocation = event.camera.location;
+        const latlng = new google.maps.LatLng(cameraLocation._lat, cameraLocation._long);
+        if (!this.markers.has(cameraId)) {
+          console.log(cameraLocation._lat);
+          console.log(cameraLocation._long);
+          marker = new google.maps.Marker({
+            position: latlng,
+            map: this.googleMap,
+            title: event.camera.locationName
+          }); 
+          marker.setMap(this.googleMap);
+          this.markers.set(cameraId, marker);
+          console.log(`Added ${cameraId} at ${cameraLocation._lat},${cameraLocation._long} to markers`);
+        } else {
+          marker = this.markers.get(cameraId);
+          marker.setPosition(latlng);
+        }
+        marker.setIcon(markerIcon);
         const markerIcon = {
           url: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|' + severityToColor(event.severity)
         };
-        const marker = new google.maps.Marker({
-          position: event.camera.location,
-          map: this.googleMap,
-          title: event.camera.locationName
-        })
-        marker.setIcon(markerIcon);
-        this.markers.push(marker);
       });  
-      
+    } else {
+      console.log(`googleMap is currently ${this.googleMap}`);
     }
   }
 
@@ -66,7 +84,7 @@ export const Map = observer(withStyles({
         google = window.google;
         
         console.log(google);
-        this.mapState.googleMap = new google.maps.Map(this.mapContainer, {
+        this.googleMap = new google.maps.Map(this.mapContainer, {
           center: {lat:  -33.8819068, lng: 151.1952068},
           zoom: 19,
           styles: [
@@ -86,12 +104,14 @@ export const Map = observer(withStyles({
               stylers: [{color: '#ebe3cd'}]
             },
           ]
-        });         
+        });
+        this.filterMarkers();         
       }
     })
   }
 
   render() {
+    this.filterMarkers();
     return (
       <div
         className={this.props.classes.mapContainer}

@@ -1,11 +1,16 @@
 import React, {Component} from 'react';
 import Grid from '@material-ui/core/Grid';
 import FeedCard from './FeedCard';
+import { observer } from "mobx-react";
 
 class FeedsList extends Component {
   constructor(props){
     super(props);
     this.state = {feeds: props.feeds}
+  }
+
+  componentWillReceiveProps(nextProps){
+    this.setState({feeds: nextProps.feeds});
   }
 
   generateList(){
@@ -19,7 +24,6 @@ class FeedsList extends Component {
   }
 
   render() {
-    console.log(this.state.feeds);
     return (
       <div>
         <Grid container spacing={8}>
@@ -30,4 +34,4 @@ class FeedsList extends Component {
   }
 }
 
-export default FeedsList
+export default observer(FeedsList)

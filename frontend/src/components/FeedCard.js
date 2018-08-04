@@ -1,40 +1,35 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
+import CardHeader from '@material-ui/core/CardHeader';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-
-const styles = {
-  media: {
-    height: 0,
-    paddingTop: '56.25%', // 16:9
-  },
-};
+import { CCTV } from '../constants/routes';
+import { withRouter } from 'react-router-dom';
 
 function FeedCard(props) {
-  const { classes } = props;
+  const { history } = props;
   return (
     <div>
-      <Card className={classes.card} style={{margin: '10px', minWidth: '100px'}}>
-        <CardMedia
-          className={classes.media}
-          image="/static/images/cards/contemplative-reptile.jpg"
-          title="Contemplative Reptile"
+      <Card
+        style={{margin: '10px', minWidth: '100px', height: '350px', position: 'relative'}}
+      >
+        <CardHeader
+          title={props.feedItem.name}
+          subheader={'Latitude: '+props.feedItem.location._lat+'; Longitude: '+props.feedItem.location._long}
         />
+        <video controls width='100%'>
+          <source src={'rick.mp4'} type="video/mp4"/>
+        </video>
         <CardContent>
-          <Typography gutterBottom variant="headline" component="h2">
-            Camera {props.feedItem.id}
-          </Typography>
           <Typography component="p">
             {props.feedItem.description}
           </Typography>
         </CardContent>
-        <CardActions>
-          <Button size="small" color="primary">
+        <CardActions style={{position: 'absolute', bottom: '5px'}}>
+          <Button size="small" color="primary" onClick={()=>history.push(CCTV+'/'+props.feedItem.id)}>
             View
           </Button>
         </CardActions>
@@ -47,4 +42,4 @@ FeedCard.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(FeedCard);
+export default withRouter(FeedCard);

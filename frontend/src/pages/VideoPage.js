@@ -1,33 +1,39 @@
 import React, { Component } from 'react';
-import withStyles from '@material-ui/core/styles/withStyles';
-
-import { Map } from '../components/Map';
 import VideoCard from '../components/VideoCard';
+import state from '../state.js';
 
-const LabelThing = ({label, value}) => (
-  value ?   <p><strong>{label}</strong>{value ? ` ${value}` : ''}</p> : null
-);
-
-export const VideoPage = withStyles({
-  video: {
-    maxHeight: '400px'
-  },
-  mapContainer: {
-    maxHeight: '400px'
+class VideoPage extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      cameraId: props.cameraId,
+    }
   }
-})(class VideoPage extends Component {
+
+  componentWillReceiveProps(nextProps){
+    this.setState({cameraId: nextProps.cameraId})
+  }
+
+  getCamera(){
+    return state.cameras.find(camera => camera.id === this.state.cameraId);
+  }
+
+  getEvents(){
+    return state.events.filter(event => event.cameraId === this.state.cameraId);
+  }
+
   render() {
+    console.log(this.getCamera());
     return (
       <div>
         <VideoCard
+          camera={this.getCamera()}
+          events={this.getEvents()}
           video={this.props.video}
         />
-        <LabelThing name={'Status'} value={this.props.status}/>
-        <h2>Map</h2>
-        <div className={this.props.mapContainer}>
-          <Map/>
-        </div>
       </div>
     );
   }
-});
+}
+
+export default VideoPage;

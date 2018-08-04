@@ -12,20 +12,21 @@ export const HomePage = withStyles({
   },
   slogan: {
     textAlign: 'center',
+    paddingTop: '40px',
     fontFamily: 'waukegan',
-    fontSize:'4.5rem'
+    fontSize:'4rem'
   }
 })(class HomePage extends Component {
   render() {
     return (
       <div>
         <img src={SliderImg} className={this.props.classes.slider}/>
-        <p className={this.props.classes.slogan}>
+        <div className={this.props.classes.slogan}>
           COMMUNITY SAFETY
           <h2 styles={{paddingLeft:'17vw'}}>
             Our First Priority
           </h2>
-        </p>
+        </div>
       </div>
     )
   }
