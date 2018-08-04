@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
 
-import Logo from '../img/arkangel_logo.svg';
+import Logo from '../img/arkangel_png.png';
 export const Header = withStyles({
   header: {
     height: '128px'
@@ -10,7 +10,7 @@ export const Header = withStyles({
     height: '100%',
     width: 'auto'
   }
-})(class Header extends Component { 
+})(class Header extends Component {
   render() {
     return (
       <div className={this.props.classes.header}>
