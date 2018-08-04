@@ -7,6 +7,7 @@ import FeedCard from './FeedCard';
 export default withStyles({
   grid: {
     display: 'grid',
+    gridGap: '15px',
     gridTemplateColumns: 'repeat(auto-fit, minmax(240px,1fr))'
   }
 })(observer(class FeedsList extends Component {

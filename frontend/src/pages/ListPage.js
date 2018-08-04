@@ -58,7 +58,7 @@ class ListPage extends Component {
           <Divider/>
           <ListPageOptions options={options}/>
         </Drawer>
-        <main style={{flexGrow: 1, padding: '5px', backgroundColor: 'whitesmoke'}}>
+        <main style={{flexGrow: 1, padding: '15px', backgroundColor: 'whitesmoke'}}>
           <Feeds feeds={state.cameras} fetching={this.state.fetching}/>
         </main>
         <Tooltip disableFocusListener disableTouchListener title="Map View">

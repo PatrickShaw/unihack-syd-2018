@@ -39,19 +39,21 @@ class Feeds extends Component {
   render() {
     return (
       <div>
-        <Input
-          style={{width: '98%', margin: '10px'}}
-          id="adornment-weight"
-          placeholder='Search'
-          onChange={(e) => this.onSearch(e)}
-          endAdornment={
-            <InputAdornment position="end">
-              <Icon><SearchIcon/></Icon>
-            </InputAdornment>}
-          inputProps={{
-            'aria-label': 'Weight',
-          }}
-        />
+        <div style={{width:'100%', paddingBottom: '15px', paddingRight: '5px', paddingLeft: '5px', boxSizing: 'border-box'}}>
+          <Input
+            style={{width: '100%'}}
+            id="adornment-weight"
+            placeholder='Search'
+            onChange={(e) => this.onSearch(e)}
+            endAdornment={
+              <InputAdornment position="end">
+                <Icon><SearchIcon/></Icon>
+              </InputAdornment>}
+            inputProps={{
+              'aria-label': 'Weight',
+            }}
+          />
+        </div>
         <FeedsList feeds={this.getMatching()}/>
       </div>
     )

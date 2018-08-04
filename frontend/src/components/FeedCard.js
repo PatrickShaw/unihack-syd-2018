@@ -12,13 +12,10 @@ import { withRouter } from 'react-router-dom';
 function FeedCard(props) {
   const { history } = props;
   return (
-      <Card
-        style={{margin: '10px', height: '350px', position: 'relative'}}
-      >
+      <Card>
         <div style={{textAlign:'center', fontFamily:'waukegan'}}>
           <CardHeader
             title={props.feedItem.name} onClick={()=>history.push(CCTV+'/'+props.feedItem.id)}
-            subheader={'Latitude: '+props.feedItem.location._lat+'; Longitude: '+props.feedItem.location._long}
           />
         </div>
         <video controls width='100%'>
@@ -29,13 +26,11 @@ function FeedCard(props) {
             {props.feedItem.description}
           </Typography>
         </CardContent>
-        <div style={{display: 'flex', justifyContent: 'center', width:'100%'}}>
-          <CardActions style={{position: 'absolute', bottom: '5px'}}>
-            <Button size="small" color="primary" onClick={()=>history.push(CCTV+'/'+props.feedItem.id)}>
-              View
-            </Button>
-          </CardActions>
-        </div>
+        <CardActions>
+          <Button size="small" color="primary" onClick={()=>history.push(CCTV+'/'+props.feedItem.id)}>
+            View
+          </Button>
+        </CardActions>
       </Card>
   );
 }
