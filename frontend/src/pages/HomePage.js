@@ -11,8 +11,9 @@ export const HomePage = withStyles({
     width: '100%'
   },
   slogan: {
+    textAlign: 'center',
     fontFamily: 'waukegan',
-    fontSize:'3rem'
+    fontSize:'4.5rem'
   }
 })(class HomePage extends Component {
   render() {
@@ -20,7 +21,10 @@ export const HomePage = withStyles({
       <div>
         <img src={SliderImg} className={this.props.classes.slider}/>
         <p className={this.props.classes.slogan}>
-          Community Safety. Our first priority.
+          COMMUNITY SAFETY
+          <h2 styles={{paddingLeft:'17vw'}}>
+            Our First Priority
+          </h2>
         </p>
       </div>
     )

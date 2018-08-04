@@ -12,18 +12,20 @@
   src: url('fonts/waukegan_bold.ttf');
 }
 
-slogan {
-  fontFamily: 'waukegan-bold';
-  fontSize:'5rem';
+h1 {
+  font-family: 'waukegan';
+  font-size: 4rem;
 }
 
-h1 {
-  fontFamily: 'waukegan-bold';
-  fontSize:'3rem';
+h2 {
+  font-family: 'waukegan';
+  font-size: 3.5rem;
+  font-weight: normal;
 }
 
 p {
-  fontFamily: 'waukegan';
+  font-family: 'waukegan';
+  font-size: 2rem;
 }
 
 body {
