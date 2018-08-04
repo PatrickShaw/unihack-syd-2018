@@ -6,6 +6,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 import { NotifList } from './NotifList';
 import { withRouter } from 'react-router-dom';
+import Logo from '../img/arkangel_png.png';
 
 const styles = {
   root: {
@@ -26,6 +27,7 @@ function AppNavBar(props) {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
+          <img src={Logo} style={{width: '200px', marginRight: '50px'}}/>
           <Button color="inherit" onClick={()=>props.history.push('/home')}>Home</Button>
           <Button color="inherit" onClick={()=>props.history.push('/about')}>About</Button>
           <Button color="inherit" onClick={()=>props.history.push('/list')}>Demo</Button>

@@ -24,11 +24,8 @@ export const ContentContainer = withStyles({
     return (
       <div className={this.props.classes.container}>
         <header className={this.props.classes.dontScale}>
-          <Header/>
-        </header>
-        <div className={this.props.classes.dontScale}>
           <AppNavBar/>
-        </div>
+        </header>
         <div className={this.props.classes.content}>
           {this.props.children}
         </div>
