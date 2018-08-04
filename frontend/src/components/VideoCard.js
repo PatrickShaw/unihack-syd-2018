@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -8,9 +8,9 @@ import CardActions from '@material-ui/core/CardActions';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import red from '@material-ui/core/colors/red';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import AlarmIcon from '@material-ui/icons/NotificationImportant';
+import Button from '@material-ui/core/Button';
 import Spinner from 'react-spinkit';
 import VideoCardHistory from './VideoCardHistory';
 import classnames from 'classnames';
@@ -21,8 +21,18 @@ const styles = theme => ({
     height: 0,
     paddingTop: '56.25%', // 16:9
   },
+  button: {
+    align: 'center',
+    textAlign: 'center',
+    margin: theme.spacing.unit,
+  },
   actions: {
     display: 'flex',
+  },
+  center: {
+    display: 'flex',
+    justifyContent: 'center',
+    width: '100%'
   },
   expand: {
     transform: 'rotate(0deg)',
@@ -63,7 +73,6 @@ class VideoCard extends Component {
     }
     const { classes } = this.props;
 
-    console.log(this.state.events);
     return (
       <Card style={{margin: '20px auto', maxWidth: '1000px'}}>
         <CardHeader
@@ -79,12 +88,12 @@ class VideoCard extends Component {
           </Typography>
         </CardContent>
         <CardActions className={classes.actions} disableActionSpacing>
-          <IconButton aria-label="Add to favorites">
-            <FavoriteIcon />
-          </IconButton>
-          <IconButton aria-label="Share">
-            <ShareIcon />
-          </IconButton>
+          <div className={this.props.classes.center}>
+            <Button text-align="center" variant="extendedFab" aria-label="Notify" className={classes.button}>
+              <AlarmIcon className={classes.extendedIcon} />
+              Notify Authorities
+            </Button>
+          </div>
           <IconButton
             className={classnames(classes.expand, {
               [classes.expandOpen]: this.state.expanded,
@@ -95,6 +104,7 @@ class VideoCard extends Component {
           >
             <ExpandMoreIcon />
           </IconButton>
+
         </CardActions>
         <VideoCardHistory expanded={this.state.expanded} history={this.state.events}/>
       </Card>
