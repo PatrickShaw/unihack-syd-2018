@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
+import {observer} from 'mobx-react';
 
-import { Map } from '../components/Map';
+import { Mapz } from '../components/Mapz';
 import { Tooltip, Button } from '@material-ui/core';
 import ViewListIcon from '@material-ui/icons/ViewList';
+
+import state from '../state';
+
 
 export const MapPage = withStyles({
   viewButton: {
@@ -23,7 +27,7 @@ export const MapPage = withStyles({
     right: '45px',
     bottom: '105px',
   }
-})(class MapPage extends Component {
+})(observer(class MapPage extends Component {
 
   // Switches to Map mode
   switchList = () => {
@@ -33,7 +37,7 @@ export const MapPage = withStyles({
   render() {
     return (
       <div className={this.props.classes.mapContainer}>
-        <Map/>
+        <Mapz cameraEvents={state.cameraEvents.get()}/>
         <Tooltip disableFocusListener disableTouchListener title="List View">
           <Button onClick={this.switchList} variant='fab' className={this.props.classes.viewButton}>
             <ViewListIcon style={{color: 'white'}}/>
@@ -42,4 +46,4 @@ export const MapPage = withStyles({
       </div>
     )
   }
-});
+}));

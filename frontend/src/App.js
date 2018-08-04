@@ -15,16 +15,6 @@ export const App = withStyles({
     width: '100%',
     height: '100vh'
   },
-  fadeEnter: {
-    opacity: 0,
-    zIndex: 1
-  },
-  fadeEnter: {
-    '&fadeEnterActive': {
-      opacity: 1,
-      transition: 'opacity 250ms ease-in'
-    }
-  }
 })(class App extends Component {
   render() {
     return (
