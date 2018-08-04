@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 import { tileLayer, map, LatLng, geoJSON } from 'leaflet';
 import withStyles from '@material-ui/core/styles/withStyles';
+
 export const Map = withStyles({
-  mapContainer: {
-    width: '100%',
-    height: '100%'
+  mapContainer: { 
+    width: '100%'
   }
 })(class Map extends Component {
   constructor(props) {
     super(props);
     this.tileLayer = tileLayer(
       'http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; ArkAngel'
+        attribution: '&copy; ArkAngel',
+        id: 'mapbox.streets'
       }
     );
     this.roomLayer = geoJSON([], {});
