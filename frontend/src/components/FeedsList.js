@@ -21,7 +21,7 @@ class FeedsList extends Component {
   render() {
     console.log(this.state.feeds);
     return (
-      <div style={{width: '90%'}}>
+      <div>
         <Grid container spacing={8}>
           {this.generateList()}
         </Grid>
