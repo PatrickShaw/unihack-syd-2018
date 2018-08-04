@@ -40,7 +40,9 @@ export const App = withStyles({
                   <Route path='/cctv' render={() => <VideoPage
                       videoTitle="Swag"
                       video={{
-                        url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+                        title: 'Camera 1',
+                        subheader: '23 Kings Street',
+                        src: 'rick.mp4',
                       }}
                     />}/>
                   <Route path='/home' component={HomePage}/>
