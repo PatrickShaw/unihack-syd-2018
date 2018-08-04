@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import FeedsList from './FeedsList';
 import { Input, InputAdornment, Icon } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
+import Fuse from 'fuse.js';
 
 class Feeds extends Component {
   constructor(props){
@@ -16,8 +17,23 @@ class Feeds extends Component {
   onSearch = (e) => this.setState({search: e.target.value});
 
   getMatching(){
-    return this.state.feeds.filter(feed => feed.data.name.toLowerCase()
-      .startsWith(this.state.search.toLowerCase()));
+    const options = {
+      shouldSort: true,
+      threshold: 0.6,
+      location: 0,
+      distance: 100,
+      maxPatternLength: 32,
+      minMatchCharLength: 1,
+      keys: [
+        "data.name",
+        "data.location"
+      ]
+    };
+    if(this.state.search === ""){
+      return this.state.feeds;
+    }
+    let fuse = new Fuse(this.state.feeds, options); // "list" is the item array
+    return fuse.search(this.state.search);
   }
 
   render() {
