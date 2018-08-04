@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { withStyles } from '@material-ui/core/styles/withStyles';
+import withStyles from '@material-ui/core/styles/withStyles';
 
-import { Map } from '../Map';
+import { Map } from '../components/Map';
 
 export const MapPage = withStyles({
   mapContainer: {
