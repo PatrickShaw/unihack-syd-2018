@@ -37,7 +37,7 @@ export const MapPage = withStyles({
   render() {
     return (
       <div className={this.props.classes.mapContainer}>
-        <Mapz events={state.cameraEvents.get()}/>
+        <Mapz cameraEvents={state.cameraEvents.get()}/>
         <Tooltip disableFocusListener disableTouchListener title="List View">
           <Button onClick={this.switchList} variant='fab' className={this.props.classes.viewButton}>
             <ViewListIcon style={{color: 'white'}}/>

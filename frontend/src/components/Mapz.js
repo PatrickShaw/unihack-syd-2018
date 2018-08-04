@@ -46,31 +46,35 @@ export const Mapz = observer(withStyles({
   filterMarkers = () => {
     console.log('Filtering markers');
     if (this.googleMap) {
-      console.log(toJS(this.props.events));
-      this.props.events.forEach(event => {
-        const cameraId = event.cameraId;
-        let marker = undefined;
-        const cameraLocation = event.camera.location;
-        const latlng = new google.maps.LatLng(cameraLocation._lat, cameraLocation._long);
-        if (!this.markers.has(cameraId)) {
-          console.log(cameraLocation._lat);
-          console.log(cameraLocation._long);
-          marker = new google.maps.Marker({
-            position: latlng,
-            map: this.googleMap,
-            title: event.camera.locationName
-          }); 
-          marker.setMap(this.googleMap);
-          this.markers.set(cameraId, marker);
-          console.log(`Added ${cameraId} at ${cameraLocation._lat},${cameraLocation._long} to markers`);
-        } else {
-          marker = this.markers.get(cameraId);
-          marker.setPosition(latlng);
+      console.log(toJS(this.props.cameraEvents));
+      this.props.cameraEvents.forEach(event => {
+        try {
+          const cameraId = event.cameraId;
+          let marker = undefined;
+          const cameraLocation = event.camera.location;
+          const latlng = new google.maps.LatLng(cameraLocation._lat, cameraLocation._long);
+          if (!this.markers.has(cameraId)) {
+            console.log(cameraLocation._lat);
+            console.log(cameraLocation._long);
+            marker = new google.maps.Marker({
+              position: latlng,
+              map: this.googleMap,
+              title: event.camera.locationName
+            }); 
+            marker.setMap(this.googleMap);
+            this.markers.set(cameraId, marker);
+            console.log(`Added ${cameraId} at ${cameraLocation._lat},${cameraLocation._long} to markers`);
+          } else {
+            marker = this.markers.get(cameraId);
+            marker.setPosition(latlng);
+          }
+          marker.setIcon(markerIcon);
+          const markerIcon = {
+            url: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|' + severityToColor(event.severity)
+          };
+        } catch(err) {
+          console.error(err);
         }
-        marker.setIcon(markerIcon);
-        const markerIcon = {
-          url: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|' + severityToColor(event.severity)
-        };
       });  
     } else {
       console.log(`googleMap is currently ${this.googleMap}`);

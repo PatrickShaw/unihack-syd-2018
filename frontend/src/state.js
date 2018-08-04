@@ -11,7 +11,8 @@ class State {
     this.events = observable([]);
     this.unsubscribeCameras = camerasRef.onSnapshot(this.onCamerasUpdate);
     this.unsubscribeEvents = eventsRef.onSnapshot(this.onEventsUpdate);
-    autorun(()=>console.log(this.cameras.length));
+    autorun(() => console.log(`Cameras length: ${this.cameras.length}`));
+    autorun(() => console.log(`Events length: ${this.events.length}`))
   }
 
   onCamerasUpdate = (snapshot) => {
@@ -24,7 +25,10 @@ class State {
   };
 
   onEventsUpdate = (snapshot) => {
-    const events = snapshot.docs.map((docSnapshot) => Object.assign({}, docSnapshot.data(), {id: docSnapshot.id}));
+    const events = snapshot.docs.map((docSnapshot) => ({
+      ...docSnapshot.data(), 
+      id: docSnapshot.id
+    }));
     this.events.length = 0;
     this.events.push(...events);
   };
