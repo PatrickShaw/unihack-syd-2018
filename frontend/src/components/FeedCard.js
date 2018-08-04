@@ -18,11 +18,11 @@ const styles = {
   },
 };
 
-function SimpleMediaCard(props) {
+function FeedCard(props) {
   const { classes } = props;
   return (
     <div>
-      <Card className={classes.card} style={{margin: '10px'}}>
+      <Card className={classes.card} style={{margin: '10px', minWidth: '100px'}}>
         <CardMedia
           className={classes.media}
           image="/static/images/cards/contemplative-reptile.jpg"
@@ -46,8 +46,8 @@ function SimpleMediaCard(props) {
   );
 }
 
-SimpleMediaCard.propTypes = {
+FeedCard.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(SimpleMediaCard);
+export default withStyles(styles)(FeedCard);
