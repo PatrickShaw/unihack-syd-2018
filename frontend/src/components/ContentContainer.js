@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Header } from './Header';
-import { Navbar } from './Navbar';
+import AppNavBar from './AppNavBar';
 import { Footer } from './Footer';
 import withStyles from '@material-ui/core/styles/withStyles';
 
@@ -27,7 +27,7 @@ export const ContentContainer = withStyles({
           <Header/>
         </header>
         <div className={this.props.classes.dontScale}>
-          <Navbar/>
+          <AppNavBar/>
         </div>
         <div className={this.props.classes.content}>
           {this.props.children}

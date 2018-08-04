@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -89,7 +89,7 @@ class VideoCard extends Component {
         </CardContent>
         <CardActions className={classes.actions} disableActionSpacing>
           <div className={this.props.classes.center}>
-            <Button text-align="center" variant="extendedFab" aria-label="Notify" className={classes.button}>
+            <Button text-align="center" variant="contained"  color='primary' aria-label="Notify" className={classes.button}>
               <AlarmIcon className={classes.extendedIcon} />
               Notify Authorities
             </Button>

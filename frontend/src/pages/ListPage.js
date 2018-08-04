@@ -16,13 +16,16 @@ const styles = theme => ({
   drawerPaper: {
     position: 'relative',
     width: drawerWidth,
+    backgroundColor: theme.palette.secondary.main
   },
   viewButton: {
     position: 'fixed',
     maxHeight: '100%',
     bottom: '30px',
-    right: '40px',
-    backgroundColor: 'black'
+    right: '40px'
+  },
+  listItem: {
+    backgroundColor: theme.palette.secondary.main
   }
 });
 
@@ -49,7 +52,6 @@ class ListPage extends Component {
             paper: this.props.classes.drawerPaper,
           }}
         >
-          <div className={this.props.classes.toolbar}/>
           <List>
             <ListItem>
               <ListItemText primary="Filters"/>
@@ -62,8 +64,8 @@ class ListPage extends Component {
           <Feeds feeds={state.cameras} fetching={this.state.fetching}/>
         </main>
         <Tooltip disableFocusListener disableTouchListener title="Map View">
-          <Button onClick={this.switchMap} variant='fab' className={this.props.classes.viewButton}>
-            <LocationOnIcon style={{color: 'white'}}/>
+          <Button onClick={this.switchMap} color='secondary' variant='fab' className={this.props.classes.viewButton}>
+            <LocationOnIcon />
           </Button>
         </Tooltip>
       </div>
