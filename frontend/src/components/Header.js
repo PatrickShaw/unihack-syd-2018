@@ -4,11 +4,14 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import Logo from '../img/arkangel_png.png';
 export const Header = withStyles({
   header: {
-    height: '128px'
+    paddingTop: '50px',
+    paddingLeft: '35px',
+    paddingBottom: '10px',
+    height: '100px',
   },
   logo: {
-    height: '100%',
-    width: 'auto'
+    height: '60%',
+    width: 'auto',
   }
 })(class Header extends Component {
   render() {
