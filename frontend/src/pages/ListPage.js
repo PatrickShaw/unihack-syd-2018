@@ -74,7 +74,8 @@ class ListPage extends Component {
         </main>
         <div className={this.props.classes.buttonText}>Map Mode</div>
         <img onClick={this.switchMap} src={ViewIcon} className={this.props.classes.viewButton}
-        title="Change Views"></img>
+        title="Change Views">
+        </img>
       </div>
     );
   }
