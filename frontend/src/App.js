@@ -5,9 +5,9 @@ import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 import { HomePage } from './pages/HomePage';
 import { MapPage } from './pages/MapPage';
-import { ListPage } from './pages/ListPage';
 import { VideoPage } from './pages/VideoPage';
 import { ErrorPage } from './pages/ErrorPage';
+import ListPage from './pages/ListPage';
 import { ContentContainer }  from './components/ContentContainer';
 import { CssBaseline } from '../node_modules/@material-ui/core';
 
