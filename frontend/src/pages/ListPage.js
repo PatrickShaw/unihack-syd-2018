@@ -4,8 +4,8 @@ import { withStyles } from '@material-ui/core/styles';
 import { Drawer, Divider, List, ListItem, ListItemText } from '@material-ui/core';
 import Feeds from "../components/Feeds";
 import ListPageOptions from "../components/ListPageOptions";
-import firebase from '../firebase.js';
-//import State from '../state';
+import state from '../state';
+import { observer } from "mobx-react";
 
 const drawerWidth = 240;
 
@@ -21,19 +21,10 @@ const styles = theme => ({
 class ListPage extends Component{
   constructor(props){
     super(props);
-    this.colRef = firebase.firestore().collection('cameras');
     this.state = {
       fetching: false,
       feeds: []
     }
-  }
-
-  componentDidMount() {
-    this.unsubscribeCol = this.colRef.onSnapshot(this.onColUpdate);
-    this.setState({fetching: true});
-  }
-  componentWillUnmount() {
-    this.unsubscribeCol();
   }
 
   render() {
@@ -55,28 +46,15 @@ class ListPage extends Component{
           <ListPageOptions options={options}/>
         </Drawer>
         <main style={{flexGrow: 1, padding: '5px', backgroundColor: 'whitesmoke'}}>
-          <Feeds feeds={this.state.feeds} fetching={this.state.fetching}/>
+          <Feeds feeds={state.cameras} fetching={this.state.fetching}/>
         </main>
       </div>
     );
   }
-
-  onColUpdate = (snapshot) => {
-    const feeds = snapshot.docs.map((docSnapshot) => (Object.assign({},
-      docSnapshot.data(),
-      {id: docSnapshot.id},
-      {latitude: docSnapshot.data().location._lat, longitude: docSnapshot.data().location._long},
-      {location: undefined}
-    )));
-    this.setState({
-      feeds: feeds,
-      fetching: false
-    });
-  };
 }
 
 ListPage.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(ListPage);
+export default withStyles(styles)(observer(ListPage));

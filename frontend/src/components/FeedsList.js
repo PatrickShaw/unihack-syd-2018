@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Grid from '@material-ui/core/Grid';
 import FeedCard from './FeedCard';
+import { observer } from "mobx-react";
 
 class FeedsList extends Component {
   constructor(props){
@@ -33,4 +34,4 @@ class FeedsList extends Component {
   }
 }
 
-export default FeedsList
+export default observer(FeedsList)

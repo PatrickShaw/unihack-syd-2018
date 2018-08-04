@@ -1,15 +1,34 @@
-import { observer } from "mobx-react";
 import { observable, computed, action, autorun } from 'mobx';
 import firebase from './firebase';
 
+const camerasRef = firebase.firestore().collection('cameras');
+const eventsRef = firebase.firestore().collection('events');
+
+
 class State {
   constructor() {
-    this.cameras = observable(firebase.firestore().collection('cameras'));
+    this.cameras = observable([]);
     this.events = observable([]);
-    autorun(() => {
-      console.log(`You now have ${this.videoStuff.length}`);
-    });
+    this.unsubscribeCameras = camerasRef.onSnapshot(this.onCamerasUpdate);
+    this.unsubscribeEvents = eventsRef.onSnapshot(this.onEventsUpdate);
+    autorun(()=>console.log(this.cameras.length));
   }
+
+  onCamerasUpdate = (snapshot) => {
+    const cameras = snapshot.docs.map((docSnapshot) => ({
+      ...docSnapshot.data(),
+      id: docSnapshot.id
+    }));
+    this.cameras.length = 0;
+    this.cameras.push(...cameras);
+    //cameras.forEach(action(camera => this.cameras.push(camera)));
+  };
+
+  onEventsUpdate = (snapshot) => {
+    const events = snapshot.docs.map((docSnapshot) => Object.assign({}, docSnapshot.data(), {id: docSnapshot.id}));
+    this.events.length = 0;
+    events.forEach(action(camera => this.events.push(camera)));
+  };
 
   cameraEvents = computed(() => (
     this.events.forEach(event => {
@@ -19,4 +38,4 @@ class State {
   ))
 }
 
-export default State;
+export default new State();

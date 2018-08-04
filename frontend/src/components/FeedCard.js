@@ -18,7 +18,7 @@ function FeedCard(props) {
       >
         <CardHeader
           title={props.feedItem.name}
-          subheader={'Lat: '+props.feedItem.latitude+', Long: '+props.feedItem.longitude}
+          subheader={'Latitude: '+props.feedItem.location._lat+'; Longitude: '+props.feedItem.location._long}
         />
         <video controls width='100%'>
           <source src={'rick.mp4'} type="video/mp4"/>

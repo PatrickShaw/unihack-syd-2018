@@ -3,6 +3,7 @@ import FeedsList from './FeedsList';
 import { Input, InputAdornment, Icon } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import Fuse from 'fuse.js';
+import { observer } from "mobx-react";
 
 class Feeds extends Component {
   constructor(props){
@@ -57,4 +58,4 @@ class Feeds extends Component {
   }
 }
 
-export default Feeds
+export default observer(Feeds)
