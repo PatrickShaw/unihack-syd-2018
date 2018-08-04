@@ -5,7 +5,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import { AboutPage } from './pages/AboutPage';
 import { HomePage } from './pages/HomePage';
 import { MapPage } from './pages/MapPage';
-import { VideoPage } from './pages/VideoPage';
+import VideoPage from './pages/VideoPage';
 import { ErrorPage } from './pages/ErrorPage';
 import ListPage from './pages/ListPage';
 import { ContentContainer }  from './components/ContentContainer';
@@ -34,11 +34,9 @@ export const App = withStyles({
             <Route path='/about' component={AboutPage}/>
             <Route path='/map' component={MapPage}/>
             <Route path='/list' component={ListPage}/>
-            <Route path='/cctv' render={() => <VideoPage
-              videoTitle="Swag"
+            <Route path='/cctv/:id' render={(match) => <VideoPage
+              cameraId={match.params.id}
               video={{
-                title: 'Camera 1',
-                subheader: '23 Kings Street',
                 src: 'rick.mp4',
               }}
             />}/>

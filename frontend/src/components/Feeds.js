@@ -25,8 +25,7 @@ class Feeds extends Component {
       maxPatternLength: 32,
       minMatchCharLength: 1,
       keys: [
-        "data.name",
-        "data.location"
+        "name"
       ]
     };
     if(this.state.search === ""){

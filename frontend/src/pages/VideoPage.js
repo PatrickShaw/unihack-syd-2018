@@ -1,27 +1,31 @@
 import React, { Component } from 'react';
-import withStyles from '@material-ui/core/styles/withStyles';
-
-import { Map } from '../components/Map';
 import VideoCard from '../components/VideoCard';
+import firebase from '../firebase.js';
 
-const LabelThing = ({label, value}) => (
-  value ?   <p><strong>{label}</strong>{value ? ` ${value}` : ''}</p> : null
-);
-
-export const VideoPage = withStyles({
-  video: {
-    maxHeight: '400px'
+class VideoPage extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      cameraId: props.cameraId,
+      fetchingCamera: false,
+      fetchingEvents: false
+    }
   }
-})(class VideoPage extends Component {
+
+  componentWillReceiveProps(next){
+
+  }
+
   render() {
+    console.log(this.state.cameraId)
     return (
       <div>
         <VideoCard
           video={this.props.video}
         />
-        <LabelThing name={'Status'} value={this.props.status}/>
-        
       </div>
     );
   }
-});
+}
+
+export default VideoPage;

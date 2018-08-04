@@ -5,6 +5,7 @@ import { Drawer, Divider, List, ListItem, ListItemText } from '@material-ui/core
 import Feeds from "../components/Feeds";
 import ListPageOptions from "../components/ListPageOptions";
 import firebase from '../firebase.js';
+//import State from '../state';
 
 const drawerWidth = 240;
 
@@ -61,10 +62,12 @@ class ListPage extends Component{
   }
 
   onColUpdate = (snapshot) => {
-    const feeds = snapshot.docs.map((docSnapshot) => ({
-      id: docSnapshot.id,
-      data: docSnapshot.data()
-    }));
+    const feeds = snapshot.docs.map((docSnapshot) => (Object.assign({},
+      docSnapshot.data(),
+      {id: docSnapshot.id},
+      {latitude: docSnapshot.data().location._lat, longitude: docSnapshot.data().location._long},
+      {location: undefined}
+    )));
     this.setState({
       feeds: feeds,
       fetching: false

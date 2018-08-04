@@ -17,19 +17,19 @@ function FeedCard(props) {
         style={{margin: '10px', minWidth: '100px', height: '350px', position: 'relative'}}
       >
         <CardHeader
-          title={props.feedItem.data.name}
-          subheader={props.feedItem.data.location}
+          title={props.feedItem.name}
+          subheader={'Lat: '+props.feedItem.latitude+', Long: '+props.feedItem.longitude}
         />
         <video controls width='100%'>
           <source src={'rick.mp4'} type="video/mp4"/>
         </video>
         <CardContent>
           <Typography component="p">
-            {props.feedItem.data.description}
+            {props.feedItem.description}
           </Typography>
         </CardContent>
         <CardActions style={{position: 'absolute', bottom: '5px'}}>
-          <Button size="small" color="primary" onClick={()=>history.push(CCTV+'/'+props.feedItem.id)}>
+          <Button size="small" color="primary" onClick={()=>history.push(CCTV+'/'+props.id)}>
             View
           </Button>
         </CardActions>
