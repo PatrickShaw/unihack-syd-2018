@@ -47,7 +47,6 @@ const styles = theme => ({
     },
   },
     expandOpen: {
-    transform: 'rotate(180deg)',
   },
   avatar: {
     backgroundColor: red[500],
@@ -100,17 +99,16 @@ class VideoCard extends Component {
               Notify Authorities
             </Button>
           </div>
-          <IconButton
+          <Button color="secondary" textTransform="false"
             className={classnames(classes.expand, {
               [classes.expandOpen]: this.state.expanded,
             })}
             onClick={this.handleExpandClick}
             aria-expanded={this.state.expanded}
-            aria-label="Show more"
+            aria-label="History"
           >
-            <ExpandMoreIcon />
-          </IconButton>
-
+            History
+          </Button>
         </CardActions>
         <VideoCardHistory expanded={this.state.expanded} history={this.state.events}/>
       </Card>
