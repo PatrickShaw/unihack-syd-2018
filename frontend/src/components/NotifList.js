@@ -39,8 +39,7 @@ export const NotifList = withStyles({
     zIndex: '90000',
   },
   listItem: {
-    fontFamily: 'waukegan',
-    fontSize: '1.2em',
+    fontSize: '1em',
     '&':{
       backgroundColor: '#f2f2f2',
       color: 'black',

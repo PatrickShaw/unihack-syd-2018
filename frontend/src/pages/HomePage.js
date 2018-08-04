@@ -12,9 +12,9 @@ export const HomePage = withStyles({
   },
   slogan: {
     textAlign: 'center',
-    paddingTop: '15px',
+    paddingTop: '40px',
     fontFamily: 'waukegan',
-    fontSize:'4.5rem'
+    fontSize:'4rem'
   }
 })(class HomePage extends Component {
   render() {

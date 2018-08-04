@@ -5,7 +5,8 @@ import withStyles from '@material-ui/core/styles/withStyles';
 export const Footer = withStyles({
   footer: {
     backgroundColor: '#000000',
-    height: '40px',
+    position: 'fixed',
+    height: '60px',
     padding: '30px',
     overflow: 'hidden',
     fontFamily: 'waukegan',
