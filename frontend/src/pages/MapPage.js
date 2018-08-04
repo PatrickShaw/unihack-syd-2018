@@ -8,7 +8,6 @@ export const MapPage = withStyles({
 })(class MapPage extends Component {
   render() {
     return (
-      
       <div className={this.props.classes.mapContainer}>
         <Map/>
       </div>
