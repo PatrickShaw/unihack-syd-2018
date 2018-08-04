@@ -13,7 +13,7 @@ class Feeds extends Component {
     return (
       <div>
         <Input
-          style={{width: '100%'}}
+          style={{width: '98%', margin: '10px'}}
           id="adornment-weight"
           placeholder='Search'
           endAdornment={
