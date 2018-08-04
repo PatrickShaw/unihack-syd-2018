@@ -3,7 +3,7 @@ import { Route } from 'react-router-dom';
 import withStyles from '@material-ui/core/styles/withStyles';
 
 import { MapPage } from './pages/MapPage';
-import { ListPage } from './pages/ListPage';
+import ListPage from './pages/ListPage';
 import { ContentContainer }  from './components/ContentContainer';
 
 export const App = withStyles({

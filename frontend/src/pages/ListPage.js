@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
-import withStyles from '@material-ui/core/styles/withStyles';
+import FeedsList from "../components/FeedsList";
 
-import { Map } from '../components/Map';
+let feeds = [];
+for(let i = 0; i < 10; i++){
+  feeds.push({id: i, description: 'location '+String(i)})
+}
 
-export const ListPage = withStyles({
-  mapContainer: {
-    display: 'flex'
-  }
-})(class ListPage extends Component {
+class ListPage extends Component {
   render() {
     return (
-
-      <div className={this.props.classes.mapContainer}>
-        <Map/>
+      <div>
+        <FeedsList feeds={feeds}/>
       </div>
     )
   }
-});
+}
+
+export default ListPage
