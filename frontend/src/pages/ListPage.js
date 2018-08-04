@@ -15,8 +15,7 @@ let options = [{title: 'Location'}, {title: 'Activity'}, {title: 'Importance'}];
 const styles = theme => ({
   drawerPaper: {
     position: 'relative',
-    width: drawerWidth,
-    backgroundColor: theme.palette.secondary.main
+    width: drawerWidth
   },
   viewButton: {
     position: 'fixed',

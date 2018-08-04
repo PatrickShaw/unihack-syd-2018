@@ -8,9 +8,12 @@ import { NotifList } from './NotifList';
 import { withRouter } from 'react-router-dom';
 import Logo from '../img/arkangel_png.png';
 
-const styles = {
+const styles = theme => ({
+  button: {
+    color: '#FFFFFF'
+  },
   root: {
-    flexGrow: 1,
+    flexGrow: 1
   },
   flex: {
     flexGrow: 1,
@@ -19,18 +22,18 @@ const styles = {
     marginLeft: -12,
     marginRight: 20,
   },
-};
+});
 
 function AppNavBar(props) {
   const { classes } = props;
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position="static" style={{background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)'}}>
         <Toolbar>
           <img src={Logo} style={{width: '200px', marginRight: '50px'}}/>
-          <Button color="inherit" onClick={()=>props.history.push('/home')}>Home</Button>
-          <Button color="inherit" onClick={()=>props.history.push('/about')}>About</Button>
-          <Button color="inherit" onClick={()=>props.history.push('/list')}>Demo</Button>
+          <Button color="inherit" className={classes.button} onClick={()=>props.history.push('/home')}>Home</Button>
+          <Button color="inherit" className={classes.button} onClick={()=>props.history.push('/about')}>About</Button>
+          <Button color="inherit" className={classes.button} onClick={()=>props.history.push('/list')}>Demo</Button>
           <NotifList/>
         </Toolbar>
       </AppBar>
