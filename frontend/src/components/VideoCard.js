@@ -89,7 +89,10 @@ class VideoCard extends Component {
         <video controls width='100%'>
           <source src={this.state.video.src} type="video/mp4"/>
         </video>
-        <GoogleMap cameraEvents={this.props.events.map(event => ({ ...event, camera: this.props.camera}))}/>
+        <GoogleMap navToEvent={{
+          lat: this.props.camera.location._lat,
+          lng: this.props.camera.location._lng
+        }} cameraEvents={this.props.events.map(event => ({ ...event, camera: this.props.camera}))}/>
         <CardActions className={classes.actions} disableActionSpacing>
           <div className={this.props.classes.center}>
             <Button text-align="center" variant="contained"  color='primary' aria-label="Notify" className={classes.button}>

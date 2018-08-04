@@ -96,8 +96,17 @@ export const GoogleMap = observer(withStyles({
         google = window.google;
         
         console.log(google);
+        let loc = undefined;
+        if (this.props.navToLoc) {
+          loc = this.props.navToLoc
+        } else {
+          loc = {
+            lat: -33.8819068,
+            lng: 151.1952068
+          }
+        }
         this.googleMap = new google.maps.Map(this.mapContainer, {
-          center: {lat:  -33.8819068, lng: 151.1952068},
+          center: loc,
           zoom: 19,
           styles: [
             {
