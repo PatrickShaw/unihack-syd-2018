@@ -13,7 +13,7 @@ app.post('/', function(req, res){
   console.log('sending');
   twilioClient.messages.create({from: process.env.TWILIO_NUMBER, body: req.body.message, to: process.env.RECIPIENT_NUMBER})
     .then(message => {
-      console.log('sent: '+message);
+      console.log('sent successfully');
       res.send(message).end();
     })
     .catch(error => {
