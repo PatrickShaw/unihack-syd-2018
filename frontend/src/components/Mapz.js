@@ -12,19 +12,25 @@ function padZeroes(value, digitCount) {
 }
 
 function severityToColor(severity) {
-  const blueness = Math.max(0, Math.min(1, severity));
+  const redness = Math.max(0, Math.min(1, severity));
   // 0-255, how white/black the grey tone will be.
-  const baseGreyTone = 220;
-  const greyRange = 210;
-  const blueOffset = 35;
-  const blue = Math.round(baseGreyTone + blueOffset);
-  const red = Math.round(baseGreyTone - greyRange * blueness);
-  const green = Math.round((baseGreyTone + blueOffset * 0.25) - greyRange * blueness);
-  const blueHex = padZeroes(green.toString(16), 2);
+  const maxRed = 222;
+  const baseGreyTone = 60;
+  const greyRange = 40;
+  const redOffset = 20;
+  const redRange = maxRed - (baseGreyTone + redOffset);
+  const blue = Math.round(baseGreyTone);
+  const red = Math.round(redOffset + baseGreyTone + redRange * Math.sqrt(redness));
+  const green = Math.round(baseGreyTone+ redRange * (1 - Math.sqrt(redness)));
+  const blueHex = padZeroes(blue.toString(16), 2);
   const redHex = padZeroes(red.toString(16), 2);
-  const greenHex = padZeroes(blue.toString(16), 2);
+  const greenHex = padZeroes(green.toString(16), 2);
   const colorHex = `${redHex}${greenHex}${blueHex}`;
   return colorHex;
+}
+
+function iconUrl(severity) {
+  return 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|' + severityToColor(severity);
 }
 
 let google = undefined;
@@ -59,7 +65,8 @@ export const Mapz = observer(withStyles({
             marker = new google.maps.Marker({
               position: latlng,
               map: this.googleMap,
-              title: event.camera.locationName
+              title: event.camera.locationName,
+              icon: iconUrl(event.severity)
             }); 
             marker.setMap(this.googleMap);
             this.markers.set(cameraId, marker);
@@ -68,10 +75,11 @@ export const Mapz = observer(withStyles({
             marker = this.markers.get(cameraId);
             marker.setPosition(latlng);
           }
-          marker.setIcon(markerIcon);
           const markerIcon = {
-            url: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|' + severityToColor(event.severity)
+            url: iconUrl(event.severity)
           };
+          marker.setIcon(markerIcon);
+          console.log(severityToColor(event.severity));
         } catch(err) {
           console.error(err);
         }
