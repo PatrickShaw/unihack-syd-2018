@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { observer } from "mobx-react";
 import withStyles from '@material-ui/core/styles/withStyles';
+import Fade from '@material-ui/core/Fade';
 
 import FeedCard from './FeedCard';
 
