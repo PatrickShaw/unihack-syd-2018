@@ -18,7 +18,7 @@ function FeedCard(props) {
       >
         <div style={{textAlign:'center', fontFamily:'waukegan'}}>
           <CardHeader
-            title={props.feedItem.name}
+            title={props.feedItem.name} onClick={()=>history.push(CCTV+'/'+props.feedItem.id)}
             subheader={'Latitude: '+props.feedItem.location._lat+'; Longitude: '+props.feedItem.location._long}
           />
         </div>
