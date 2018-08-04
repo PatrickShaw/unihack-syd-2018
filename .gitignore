@@ -64,3 +64,4 @@ packages/*/lib/
 lib/
 */.idea
 backend/venv
+backend/uploads
