@@ -104,7 +104,7 @@ export const NotifList = withStyles({
   render() {
     const{anchorEl, notifs} = this.state
     return (
-      <div>
+      <div style={{marginLeft: 'auto'}}>
         <Button
           className={this.props.classes.notif}
           aria-owns={anchorEl ? 'simple-menu' : null}
