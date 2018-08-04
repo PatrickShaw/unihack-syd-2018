@@ -8,8 +8,8 @@ import CardActions from '@material-ui/core/CardActions';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import red from '@material-ui/core/colors/red';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
+import AlarmIcon from '@material-ui/icons/NotificationImportant';
+import Button from '@material-ui/core/Button';
 import Spinner from 'react-spinkit';
 
 const styles = theme => ({
@@ -17,8 +17,18 @@ const styles = theme => ({
     height: 0,
     paddingTop: '56.25%', // 16:9
   },
+  button: {
+    align: 'center',
+    textAlign: 'center',
+    margin: theme.spacing.unit,
+  },
   actions: {
     display: 'flex',
+  },
+  center: {
+    display: 'flex',
+    justifyContent: 'center',
+    width: '100%'
   },
   expand: {
     transform: 'rotate(0deg)',
@@ -62,12 +72,12 @@ class VideoCard extends React.Component {
           </Typography>
         </CardContent>
         <CardActions className={classes.actions} disableActionSpacing>
-          <IconButton aria-label="Add to favorites">
-            <FavoriteIcon />
-          </IconButton>
-          <IconButton aria-label="Share">
-            <ShareIcon />
-          </IconButton>
+        <div className={this.props.classes.center}>
+          <Button text-align="center" variant="extendedFab" aria-label="Notify" className={classes.button}>
+            <AlarmIcon className={classes.extendedIcon} />
+            Notify Authorities
+          </Button>
+        </div>
         </CardActions>
       </Card>
     );
