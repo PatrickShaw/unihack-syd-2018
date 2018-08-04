@@ -35,7 +35,7 @@ export const Navbar = withStyles({
       <div className={this.props.classes.topNav}>
         <Link className='active' to='/home'>Home</Link>
         <Link to='/about'>About</Link>
-        <Link to='/product'>Product</Link>
+        <Link to='/list'>Demo</Link>
         <NotifList/>
       </div>
     );
