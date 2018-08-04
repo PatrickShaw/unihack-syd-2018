@@ -12,12 +12,14 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import AlarmIcon from '@material-ui/icons/NotificationImportant';
 import Button from '@material-ui/core/Button';
 import Spinner from 'react-spinkit';
-import VideoCardHistory from './VideoCardHistory';
 import classnames from 'classnames';
 import { observer } from 'mobx-react';
 import axios from 'axios';
 
 const messagingServiceUrl = 'http://localhost:1337/';
+
+import { GoogleMap } from './GoogleMap';
+import VideoCardHistory from './VideoCardHistory';
 
 const styles = theme => ({
   media: {
@@ -48,7 +50,6 @@ const styles = theme => ({
     },
   },
     expandOpen: {
-    transform: 'rotate(180deg)',
   },
   avatar: {
     backgroundColor: red[500],
@@ -106,29 +107,33 @@ class VideoCard extends Component {
           title={this.state.camera.name}
           subheader={'Latitude: '+this.state.camera.location._lat+'; Longitude: '+this.state.camera.location._long}
         />
-        <video controls width='100%'>
-          <source src={this.state.video.src} type="video/mp4"/>
-        </video>
         <CardContent>
           <Typography component="p">
             {this.state.camera.description}
           </Typography>
         </CardContent>
+        <video controls width='100%'>
+          <source src={this.state.video.src} type="video/mp4"/>
+        </video>
+        <GoogleMap height='300px' navToEvent={{
+          lat: this.props.camera.location._lat,
+          lng: this.props.camera.location._lng
+        }} cameraEvents={this.props.events.map(event => ({ ...event, camera: this.props.camera}))}/>
+
         <CardActions className={classes.actions} disableActionSpacing>
           <div className={this.props.classes.center}>
             {otherActions}
           </div>
-          <IconButton
+          <Button color="secondary" textTransform="false"
             className={classnames(classes.expand, {
               [classes.expandOpen]: this.state.expanded,
             })}
             onClick={this.handleExpandClick}
             aria-expanded={this.state.expanded}
-            aria-label="Show more"
+            aria-label="History"
           >
-            <ExpandMoreIcon />
-          </IconButton>
-
+            History
+          </Button>
         </CardActions>
         <VideoCardHistory expanded={this.state.expanded} history={this.state.events}/>
       </Card>

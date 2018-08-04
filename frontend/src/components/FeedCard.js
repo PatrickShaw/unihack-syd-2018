@@ -18,7 +18,7 @@ function FeedCard(props) {
             title={props.feedItem.name} onClick={()=>history.push(CCTV+'/'+props.feedItem.id)}
           />
         </div>
-        <video controls width='100%'>
+        <video playsinline controls autoplay loop width='100%'>
           <source src={'rick.mp4'} type="video/mp4"/>
         </video>
         <CardContent>

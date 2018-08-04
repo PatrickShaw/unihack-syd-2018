@@ -34,15 +34,14 @@ function iconUrl(severity) {
 }
 
 let google = undefined;
-export const Mapz = observer(withStyles({
-  mapContainer: { 
+export const GoogleMap = observer(withStyles({
+  mapContainer: {
     width: '100%',
-    height: '85vh',
     display: 'flex',
     flexDirection: 'column',
     maxHeight: '100vh'
   }
-})(class Mapz extends Component {
+})(class GoogleMap extends Component {
 
   constructor(props) {
     super(props);
@@ -67,7 +66,7 @@ export const Mapz = observer(withStyles({
               map: this.googleMap,
               title: event.camera.locationName,
               icon: iconUrl(event.severity)
-            }); 
+            });
             marker.setMap(this.googleMap);
             this.markers.set(cameraId, marker);
             console.log(`Added ${cameraId} at ${cameraLocation._lat},${cameraLocation._long} to markers`);
@@ -83,7 +82,7 @@ export const Mapz = observer(withStyles({
         } catch(err) {
           console.error(err);
         }
-      });  
+      });
     } else {
       console.log(`googleMap is currently ${this.googleMap}`);
     }
@@ -94,10 +93,19 @@ export const Mapz = observer(withStyles({
       console.log(`Google maps API state: ${mapsState.mapsIsReady}`);
       if (mapsState.mapsIsReady) {
         google = window.google;
-        
+
         console.log(google);
+        let loc = undefined;
+        if (this.props.navToLoc) {
+          loc = this.props.navToLoc
+        } else {
+          loc = {
+            lat: -33.8819068,
+            lng: 151.1952068
+          }
+        }
         this.googleMap = new google.maps.Map(this.mapContainer, {
-          center: {lat:  -33.8819068, lng: 151.1952068},
+          center: loc,
           zoom: 19,
           styles: [
             {
@@ -117,7 +125,7 @@ export const Mapz = observer(withStyles({
             },
           ]
         });
-        this.filterMarkers();         
+        this.filterMarkers();
       }
     })
   }
@@ -127,6 +135,7 @@ export const Mapz = observer(withStyles({
     return (
       <div
         className={this.props.classes.mapContainer}
+        style={{height:this.props.height}}
         ref={(mapContainer) => { this.mapContainer = mapContainer; }}
       >
       </div>

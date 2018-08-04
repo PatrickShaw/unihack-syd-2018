@@ -28,12 +28,16 @@ function AppNavBar(props) {
   const { classes } = props;
   return (
     <div className={classes.root}>
-      <AppBar position="static" style={{background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)'}}>
+      <AppBar position="static" style={{background: 'linear-gradient(45deg, rgb(44, 138, 255) 30%, rgb(77, 65, 172) 90%)'}}>
         <Toolbar>
           <img src={Logo} style={{width: '200px', marginRight: '50px'}}/>
-          <Button color="inherit" className={classes.button} onClick={()=>props.history.push('/home')}>Home</Button>
-          <Button color="inherit" className={classes.button} onClick={()=>props.history.push('/about')}>About</Button>
-          <Button color="inherit" className={classes.button} onClick={()=>props.history.push('/list')}>Demo</Button>
+          <Button color="inherit" className={classes.button}
+          style={{fontFamily: 'waukegan-bold', fontSize: '1.1em'}}  onClick={()=>props.history.push('/home')}>Home</Button>
+          <Button color="inherit" className={classes.button}
+          style={{fontFamily: 'waukegan-bold', fontSize: '1.1em'}}  onClick={()=>props.history.push('/about')}>About</Button>
+          <Button color="inherit" className={classes.button}
+          style={{fontFamily: 'waukegan-bold', fontSize: '1.1em'}}
+          onClick={()=>props.history.push('/list')}>Demo</Button>
           <NotifList/>
         </Toolbar>
       </AppBar>
