@@ -14,7 +14,10 @@ import Button from '@material-ui/core/Button';
 import Spinner from 'react-spinkit';
 import VideoCardHistory from './VideoCardHistory';
 import classnames from 'classnames';
-import { observer } from "mobx-react";
+import { observer } from 'mobx-react';
+import axios from 'axios';
+
+const messagingServiceUrl = 'http://localhost:1337/';
 
 const styles = theme => ({
   media: {
@@ -55,7 +58,7 @@ const styles = theme => ({
 class VideoCard extends Component {
   constructor(props){
     super(props);
-    this.state = { expanded: false, video: props.video, fetching: props.fetching, camera: props.camera, events: props.events}
+    this.state = { notified: false, expanded: false, video: props.video, fetching: props.fetching, camera: props.camera, events: props.events}
   }
 
   componentWillReceiveProps(nextProps){
@@ -66,12 +69,36 @@ class VideoCard extends Component {
     this.setState(({ expanded: !this.state.expanded }));
   };
 
+  sendNotification(){
+    this.setState({notified: true});
+    let message = "Manual alert for camera: "+this.state.camera.name+" at Latitude: "+this.state.camera.location._lat+"; Longitude: "+this.state.camera.location._long;
+    axios.post(messagingServiceUrl, {message: message})
+  }
+
   render() {
     if(this.state.fetching){
       return (<Spinner name='double-bounce' />
       )
     }
     const { classes } = this.props;
+
+    let otherActions;
+
+    if(!this.state.notified){
+      otherActions = (
+        <Button onClick={()=>this.sendNotification()} text-align="center" variant="contained"  color='primary' aria-label="Notify" className={classes.button}>
+          <AlarmIcon className={classes.extendedIcon} />
+          Notify Authorities
+        </Button>
+      )
+    } else {
+      otherActions = (
+        <Button disabled text-align="center" variant="contained"  color='primary' aria-label="Notify" className={classes.button}>
+          <AlarmIcon className={classes.extendedIcon} />
+          Notify Authorities
+        </Button>
+      )
+    }
 
     return (
       <Card style={{margin: '20px auto', maxWidth: '1000px'}}>
@@ -89,10 +116,7 @@ class VideoCard extends Component {
         </CardContent>
         <CardActions className={classes.actions} disableActionSpacing>
           <div className={this.props.classes.center}>
-            <Button text-align="center" variant="contained"  color='primary' aria-label="Notify" className={classes.button}>
-              <AlarmIcon className={classes.extendedIcon} />
-              Notify Authorities
-            </Button>
+            {otherActions}
           </div>
           <IconButton
             className={classnames(classes.expand, {
