@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom';
 import withStyles from '@material-ui/core/styles/withStyles';
 
 import { MapPage } from './pages/MapPage';
+import { ListPage } from './pages/ListPage';
 import { ContentContainer }  from './components/ContentContainer';
 
 export const App = withStyles({
@@ -16,8 +17,9 @@ export const App = withStyles({
       <div className={this.props.classes.app}>
         <ContentContainer>
           <Route exact path='/' component={MapPage}/>
+          <Route exact path='/List' component={ListPage}/>
         </ContentContainer>
       </div>
     );
   }
-})
+});
