@@ -6,7 +6,18 @@ import SearchIcon from '@material-ui/icons/Search';
 class Feeds extends Component {
   constructor(props){
     super(props);
-    this.state = {feeds: props.feeds}
+    this.state = {feeds: props.feeds, search: ""}
+  }
+
+  componentWillReceiveProps(nextProps){
+    this.setState({feeds: nextProps.feeds});
+  }
+
+  onSearch = (e) => this.setState({search: e.target.value});
+
+  getMatching(){
+    return this.state.feeds.filter(feed => feed.data.name.toLowerCase()
+      .startsWith(this.state.search.toLowerCase()));
   }
 
   render() {
@@ -16,6 +27,7 @@ class Feeds extends Component {
           style={{width: '98%', margin: '10px'}}
           id="adornment-weight"
           placeholder='Search'
+          onChange={(e) => this.onSearch(e)}
           endAdornment={
             <InputAdornment position="end">
               <Icon><SearchIcon/></Icon>
@@ -24,7 +36,7 @@ class Feeds extends Component {
             'aria-label': 'Weight',
           }}
         />
-        <FeedsList feeds={this.state.feeds}/>
+        <FeedsList feeds={this.getMatching()}/>
       </div>
     )
   }
