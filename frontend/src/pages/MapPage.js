@@ -9,13 +9,13 @@ import ViewListIcon from '@material-ui/icons/ViewList';
 import state from '../state';
 
 
-export const MapPage = withStyles({
+export const MapPage = withStyles(theme => ({
   viewButton: {
     position: 'fixed',
     maxHeight: '100%',
     bottom: '30px',
-    right: '50px',
-    backgroundColor: 'black',
+    right: '52px',
+    backgroundColor: theme.palette.secondary.main,
   },
   buttonText: {
     color: 'white',
@@ -27,7 +27,7 @@ export const MapPage = withStyles({
     right: '45px',
     bottom: '105px',
   }
-})(observer(class MapPage extends Component {
+}))(observer(class MapPage extends Component {
 
   // Switches to Map mode
   switchList = () => {
@@ -39,7 +39,7 @@ export const MapPage = withStyles({
       <div className={this.props.classes.mapContainer}>
         <Mapz cameraEvents={state.cameraEvents.get()}/>
         <Tooltip disableFocusListener disableTouchListener title="List View">
-          <Button onClick={this.switchList} variant='fab' className={this.props.classes.viewButton}>
+          <Button onClick={this.switchList} color='secondary' variant='fab' className={this.props.classes.viewButton}>
             <ViewListIcon style={{color: 'white'}}/>
           </Button>
         </Tooltip>
