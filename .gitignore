@@ -65,3 +65,5 @@ lib/
 */.idea
 backend/venv
 backend/uploads
+darknet
+backend/secret.json
