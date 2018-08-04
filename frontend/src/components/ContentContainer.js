@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Header } from './Header';
+import { Navbar } from './Navbar';
 import { Footer } from './Footer';
 import withStyles from '@material-ui/core/styles/withStyles';
 
@@ -18,13 +19,16 @@ export const ContentContainer = withStyles({
     flexGrow: 1,
     flexShrink: 1
   }
-})(class ContentContainer extends Component { 
+})(class ContentContainer extends Component {
   render() {
     return (
       <div className={this.props.classes.container}>
         <header className={this.props.classes.dontScale}>
           <Header/>
         </header>
+        <div className={this.props.classes.dontScale}>
+          <Navbar/>
+        </div>
         <div className={this.props.classes.content}>
           {this.props.children}
         </div>
