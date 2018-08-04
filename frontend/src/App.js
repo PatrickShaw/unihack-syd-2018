@@ -18,15 +18,17 @@ export const App = withStyles({
     return (
       <div className={this.props.classes.app}>
         <ContentContainer>
-          <Route exact path='/' component={MapPage}/>
-          <Route exact path='/home' component={HomePage}/>
-          <Route exact path='/List' component={ListPage}/>
+          <Route path='/map' component={MapPage}/>
+          <Route path='/list' component={ListPage}/>
           <Route path='/cctv' render={() => <VideoPage
               videoTitle="Swag"
               video={{
                 url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
               }}
             />}/>
+          <Route path='/home' component={HomePage}/>
+          <Route exact path='/' component={HomePage}/>
+          <Route path='/' component={ErrorPage}/>
         </ContentContainer>
       </div>
     );
