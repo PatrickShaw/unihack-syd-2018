@@ -61,7 +61,7 @@ class ListPage extends Component {
         <main style={{flexGrow: 1, padding: '5px', backgroundColor: 'whitesmoke'}}>
           <Feeds feeds={state.cameras} fetching={this.state.fetching}/>
         </main>
-        <Tooltip disableFocusListener disableTouchListener title="Map Mode">
+        <Tooltip disableFocusListener disableTouchListener title="Map View">
           <Button onClick={this.switchMap} variant='fab' className={this.props.classes.viewButton}>
             <LocationOnIcon style={{color: 'white'}}/>
           </Button>

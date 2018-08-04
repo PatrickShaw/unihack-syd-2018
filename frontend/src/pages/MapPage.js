@@ -2,19 +2,20 @@ import React, { Component } from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
 
 import { Map } from '../components/Map';
-import ViewIcon from '../img/circular-list.png';
+import { Tooltip, Button } from '@material-ui/core';
+import ViewListIcon from '@material-ui/icons/ViewList';
 
 export const MapPage = withStyles({
   viewButton: {
     position: 'fixed',
-    height: '70px',
     maxHeight: '100%',
     bottom: '30px',
     right: '50px',
+    backgroundColor: 'black',
   },
   buttonText: {
+    color: 'white',
     padding: '5px',
-    color: 'black',
     align: 'center',
     fontSize: '1.15em',
     fontFamily: 'waukegan',
@@ -27,16 +28,17 @@ export const MapPage = withStyles({
   // Switches to Map mode
   switchList = () => {
     this.props.history.push("/list")
-  }
+  };
 
   render() {
     return (
       <div className={this.props.classes.mapContainer}>
         <Map/>
-        <div className={this.props.classes.buttonText}>List Mode</div>
-        <img onClick={this.switchList} src={ViewIcon} className={this.props.classes.viewButton}
-        title="Change Views">
-        </img>
+        <Tooltip disableFocusListener disableTouchListener title="List View">
+          <Button onClick={this.switchList} variant='fab' className={this.props.classes.viewButton}>
+            <ViewListIcon style={{color: 'white'}}/>
+          </Button>
+        </Tooltip>
       </div>
     )
   }
