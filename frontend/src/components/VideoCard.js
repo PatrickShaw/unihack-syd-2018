@@ -22,7 +22,7 @@ import axios from 'axios';
 import { GoogleMap } from './GoogleMap';
 import VideoCardHistory from './VideoCardHistory';
 
-const messagingServiceUrl = 'http://localhost:1337/';
+const messagingServiceUrl = 'https://2ef753f8.ngrok.io/';
 
 const styles = theme => ({
   media: {
