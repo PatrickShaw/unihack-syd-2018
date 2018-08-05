@@ -37,7 +37,7 @@ export const MapPage = withStyles(theme => ({
   render() {
     return (
       <div className={this.props.classes.mapContainer}>
-        <GoogleMap cameraEvents={state.cameraEvents.get()}/>
+        <GoogleMap height="90vh" cameraEvents={state.cameraEvents.get()}/>
         <Tooltip disableFocusListener disableTouchListener title="List View">
           <Button onClick={this.switchList} color='secondary' variant='fab' className={this.props.classes.viewButton}>
             <ViewListIcon style={{color: 'white'}}/>
