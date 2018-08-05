@@ -27,6 +27,7 @@ class VideoPage extends Component {
           events={this.getEvents()}
           fetching={!this.getCamera() || !this.getEvents()}
           video={this.props.video}
+          src={this.props.location.state.src}
         />
       </div>
     );

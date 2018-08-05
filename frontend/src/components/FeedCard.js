@@ -11,16 +11,17 @@
   import { CCTV } from '../constants/routes';
 
   function FeedCard(props) {
-    const { history } = props;
+    const { history, index } = props;
+    const src = `/rick${index}.mp4`;
     return (
         <Card>
           <div style={{fontFamily:'waukegan'}}>            
             <CardHeader
-              title={props.feedItem.name} onClick={()=>history.push(CCTV+'/'+props.feedItem.id)}
+              title={props.feedItem.name} onClick={()=>history.push({ pathname: CCTV+'/'+props.feedItem.id, state: { src: src } })}
             />
           </div>
           <video controls={false} autoPlay muted loop width='100%'>
-            <source src={'rick.mp4'} type="video/mp4"/>
+            <source src={src} type="video/mp4"/>
           </video>
           <CardContent>
             <Typography component="p">
@@ -28,7 +29,7 @@
             </Typography>
           </CardContent>
           <CardActions>
-            <Button size="small" color="primary" onClick={()=>history.push(CCTV+'/'+props.feedItem.id)}>
+            <Button size="small" color="primary" onClick={()=>history.push({ pathname: CCTV+'/'+props.feedItem.id, state: { src: src } } )}>
               View
             </Button>
           </CardActions>

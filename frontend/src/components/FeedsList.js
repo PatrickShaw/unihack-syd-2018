@@ -24,7 +24,7 @@ export default withStyles({
   generateList(){
     return (
       this.state.feeds.map((item, index) => (
-        <FeedCard key={index} feedItem={item}/>
+        <FeedCard key={index} index={index} feedItem={item}/>
       ))
     )
   }

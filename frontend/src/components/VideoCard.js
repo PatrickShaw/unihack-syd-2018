@@ -132,9 +132,10 @@ class VideoCard extends Component {
             {this.state.camera.description}
           </Typography>
         </CardContent>
-        <video controls width='100%'>
-          <source src={this.state.video.src} type="video/mp4"/>
+        <video controls={false} autoPlay muted loop width='100%'>
+          <source src={this.props.src} type="video/mp4"/>
         </video>
+
         <div style={{display: 'flex'}}>
           <div style={{width: '50%', maxWidth: '50%', flexGrow: 0.5, flexShrink: 0.5}}>
             <GoogleMap height='300px' navToEvent={{
@@ -147,7 +148,7 @@ class VideoCard extends Component {
           </div>
         </div>
         <CardActions className={classes.actions} disableActionSpacing>
-          <div>
+          <div className={classes.center}>
             {otherActions}
           </div>
         </CardActions>
