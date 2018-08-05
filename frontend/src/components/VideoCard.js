@@ -10,11 +10,15 @@ import Typography from '@material-ui/core/Typography';
 import red from '@material-ui/core/colors/red';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import AlarmIcon from '@material-ui/icons/NotificationImportant';
+
 import Button from '@material-ui/core/Button';
 import Spinner from 'react-spinkit';
 import classnames from 'classnames';
 import { observer } from "mobx-react";
+import GpsFixed from '@material-ui/icons/GpsFixed';
+import GpsNotFixed from '@material-ui/icons/GpsNotFixed';
 
+import { severityToColor } from '../severityToColor';
 import { GoogleMap } from './GoogleMap';
 import VideoCardHistory from './VideoCardHistory';
 
@@ -53,6 +57,8 @@ const styles = theme => ({
   },
 });
 
+
+
 class VideoCard extends Component {
   constructor(props){
     super(props);
@@ -73,13 +79,27 @@ class VideoCard extends Component {
       )
     }
     const { classes } = this.props;
-
+    const recentEvents = this.state.events.filter((event) => {
+      const dayBefore = new Date();
+      dayBefore.setDate(dayBefore.getDate() - 1);
+      return event.time >= dayBefore;
+    });
+    let mostRecentEvent = undefined;
+    if(recentEvents.length > 0) {
+      mostRecentEvent = recentEvents[0];
+    }
     return (
       <Card style={{margin: '20px auto', maxWidth: '1000px'}}>
-        <CardHeader
-          title={this.state.camera.name}
-          subheader={'Latitude: '+this.state.camera.location._lat+'; Longitude: '+this.state.camera.location._long}
-        />
+        <div style={{display: 'flex', alignItems: 'center'}}>
+          <CardHeader
+            title={this.state.camera.name}
+            style={{flexGrow: 1, flexShrink: 1}}
+            subheader={'Latitude: '+this.state.camera.location._lat+'; Longitude: '+this.state.camera.location._long}
+          />
+          <div style={{marginRight: '10px'}}>
+          {mostRecentEvent ? <IconButton><GpsFixed style={{color: `#${severityToColor(mostRecentEvent.severity)}`}}/></IconButton> : <IconButton><GpsNotFixed/></IconButton>}
+          </div>
+        </div>
         <CardContent>
           <Typography component="p">
             {this.state.camera.description}
