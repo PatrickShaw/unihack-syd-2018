@@ -19,7 +19,7 @@ import IconButton from '@material-ui/core/IconButton';
 
 import { severityToColor } from '../severityToColor';
 import axios from 'axios';
-import { GoogleMap } from './GoogleMap';
+import { GoogleMap } from  './GoogleMap';
 import VideoCardHistory from './VideoCardHistory';
 
 const messagingServiceUrl = 'http://localhost:1337/';
@@ -65,6 +65,10 @@ class VideoCard extends Component {
   constructor(props){
     super(props);
     this.state = { notified: false, expanded: false, video: props.video, fetching: props.fetching, camera: props.camera, events: props.events}
+  }
+
+  componentDidMount() {
+    this.rawr.playbackRate = 0.1;
   }
 
   componentWillReceiveProps(nextProps){
@@ -132,7 +136,7 @@ class VideoCard extends Component {
             {this.state.camera.description}
           </Typography>
         </CardContent>
-        <video controls={false} autoPlay muted loop width='100%'>
+        <video ref={(r) => this.rawr = r} controls={false} autoPlay muted loop width='100%'>
           <source src={this.props.src} type="video/mp4"/>
         </video>
 
