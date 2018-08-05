@@ -135,27 +135,22 @@ class VideoCard extends Component {
         <video controls width='100%'>
           <source src={this.state.video.src} type="video/mp4"/>
         </video>
-        <GoogleMap height='300px' navToEvent={{
-          lat: this.props.camera.location._lat,
-          lng: this.props.camera.location._lng
-        }} cameraEvents={this.props.events.map(event => ({ ...event, camera: this.props.camera}))}/>
-
+        <div style={{display: 'flex'}}>
+          <div style={{width: '50%', maxWidth: '50%', flexGrow: 0.5, flexShrink: 0.5}}>
+            <GoogleMap height='300px' navToEvent={{
+              lat: this.props.camera.location._lat,
+              lng: this.props.camera.location._lng
+            }} cameraEvents={this.props.events.map(event => ({ ...event, camera: this.props.camera}))}/>
+          </div>
+          <div style={{width: '50%', maxWidth: '50%', flexGrow: 0.5, flexShrink: 0.5}}>
+            <VideoCardHistory expanded={this.state.expanded} history={this.state.events}/>
+          </div>
+        </div>
         <CardActions className={classes.actions} disableActionSpacing>
-          <div className={this.props.classes.center}>
+          <div>
             {otherActions}
           </div>
-          <Button color="secondary" textTransform="false"
-            className={classnames(classes.expand, {
-              [classes.expandOpen]: this.state.expanded,
-            })}
-            onClick={this.handleExpandClick}
-            aria-expanded={this.state.expanded}
-            aria-label="History"
-          >
-            History
-          </Button>
         </CardActions>
-        <VideoCardHistory expanded={this.state.expanded} history={this.state.events}/>
       </Card>
     );
   }

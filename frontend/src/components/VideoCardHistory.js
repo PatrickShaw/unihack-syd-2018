@@ -12,7 +12,6 @@ import { observer } from "mobx-react";
 
 function VideoCardHistory(props){
   return (
-    <Collapse in={props.expanded} timeout="auto" unmountOnExit>
       <CardContent>
         <Typography paragraph variant="body2">
           Event History
@@ -34,7 +33,6 @@ function VideoCardHistory(props){
           </TableBody>
         </Table>
       </CardContent>
-    </Collapse>
   )
 }
 
